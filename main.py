@@ -94,7 +94,7 @@ async def server(ctx):
 async def user(ctx, user: discord.Member = None):
  if user == None:
  	user=ctx.author
- avatar = ctx.author.avatar_url_as(static_format="png")
+ avatar = user.avatar_url_as(static_format="png")
  date = "%b %d %Y"
  roles = ' '.join([r.mention for r in user.roles][1:])
  user=discord.Embed(title=f"{user.name}'s info", description=f"""**
