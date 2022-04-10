@@ -94,6 +94,7 @@ async def server(ctx):
 async def user(ctx, user: discord.Member = None):
  if user == None:
  	user=ctx.author
+ avatar = ctx.author.avatar_url_as(static_format="png")
  date = "%b %d %Y"
  roles = ' '.join([r.mention for r in user.roles][1:])
  user=discord.Embed(title=f"{user.name}'s info", description=f"""**
@@ -102,9 +103,8 @@ Created At: {user.created_at.strftime(date)}
 Joined Server At: {user.joined_at.strftime(date)}
 Roles: {roles}
 **""", color=ctx.author.color)
- #user.set_thumbnail(url=user.avatar_url)
+ user.set_thumbnail(url=avatar)
  user.set_footer(text=f"Request by: {ctx.author} | you can use {prefix}perms to see permissions")
- user.set_thumbnail(url=user.avatar_url) 
  await ctx.send(embed=user)
 
 @client.command()
