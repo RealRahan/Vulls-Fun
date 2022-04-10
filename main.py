@@ -48,7 +48,7 @@ General commands
 {prefix}ss `ScreenShot to any website`
 
 Administrator commands
-{prefix}ban `Ban a member form the server (send reason to the dm)`
+{prefix}ban `Ban a member form the server (don't try ban yourself!)`
 {prefix}vote `Create vote to {ctx.guild.name} members`
 
 Fun commands
@@ -123,9 +123,10 @@ async def ban(ctx, member: discord.Member = None, *, reason="No reason"):
   if not ctx.message.author.guild_permissions.ban_members:
   	await ctx.send(f"**Hey {ctx.author.name} It's looks like you don't have ban members permission to ban members from {ctx.guild.name}**")
   elif member == ctx.author:
-    await ctx.send("**bro you can't ban yourself**")
+    await ctx.send("**ok**")
   elif member == None:
     await ctx.send("**mention a user ** :x:")
+    await member.send("**you wanted that**")
   await member.send(f"**you have been banned from {ctx.message.guild.name} by {ctx.author.name} with reason: {reason}**")
   await member.ban(reason=reason)
   await ctx.send(f"**{member} sucessfully banned from {ctx.guild.name} with reason: {reason}**")
