@@ -174,7 +174,7 @@ async def vote(ctx,*, arg):
  vote=discord.Embed(title=arg, description="<:Bil_Yes:962545947571802142> Yes\n<:Bil_Neutral:962545988868931594> Neutral\n<:Bil_No:962546017318883481> No", color=ctx.author.color)
  vote.set_thumbnail(url=ctx.guild.icon_url)
  vote.set_footer(text=ctx.guild.name)
- react=await message.edit(embed=vote)
+ react=await ctx.send(embed=vote)
  await react.add_reaction("<:Bil_Yes:962545947571802142>")
  await react.add_reaction("<:Bil_Neutral:962545988868931594>")
  await react.add_reaction("<:Bil_No:962546017318883481>")
