@@ -37,6 +37,9 @@ async def on_message(message):
 @client.command()
 @commands.guild_only()
 async def help(ctx):
+ y = 0
+ for x in client.guilds:
+  y += x.member_count
  help=discord.Embed(title="help Menu", description=f"""**
 General commands
 {prefix}help `Show this menu`
@@ -56,14 +59,8 @@ Fun commands
 {prefix}roll `Roll dice`
 {prefix}ben `Asking ben`
 
-`bot replys`
-hello, hi
-back
-اهلا، أهلا
-السلام عليكم، السلام عليكم ورحمة الله وبركاتة، سلام عليكم
-باك
-برب
-soon more
+I'm Added in {len(client.guilds)} guild
+I'm get used by {y} user
 **""", color=ctx.author.color)
  help.set_thumbnail(url=ctx.author.avatar_url)
  help.set_footer(text=f"By user: {ctx.author}")
