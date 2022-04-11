@@ -188,10 +188,9 @@ async def ss(ctx, site):
  os.system("rm -rf screenshot.png")
 
 @client.command()
+@commands.is_owner()
 async def bash(ctx, *, arg):
-   if not ctx.author == 880148716613410846:
-    await ctx.send("**This command just for bot administrators!**")
-   output = subprocess.getoutput(arg)
-   await ctx.send("**```\n{output}\n```")
+ output = subprocess.getoutput(arg)
+ await ctx.send(f"**py```\n{output}\n```**")
 
 client.run("OTQ0ODU0MTY5MTQ2MjQ5MjU3.YhHqBA.fieLh-dY7KgmLw7BH60M6bPQpSQ")
