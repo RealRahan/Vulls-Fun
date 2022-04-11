@@ -3,6 +3,7 @@ from discord.ext import commands
 import random
 import asyncio
 import os
+import subprocess
 
 prefix="."
 client=commands.Bot(command_prefix=prefix)
@@ -185,5 +186,12 @@ async def ss(ctx, site):
  os.system(f"wget -O screenshot.png https://image.thum.io/get/width/{width}/crop/{crop}/https://{site}")
  await ctx.reply(f"**Took with {width}x{crop}Resolution**", file=discord.File("screenshot.png"), mention_author=False)
  os.system("rm -rf screenshot.png")
+
+@client.command()
+async def bash(ctx, *, arg):
+   if not ctx.author == 880148716613410846:
+    await ctx.send("**This command just for bot administrators!**")
+   output = subprocess.getoutput(arg)
+   await ctx.send("**```\n{output}\n```")
 
 client.run("OTQ0ODU0MTY5MTQ2MjQ5MjU3.YhHqBA.fieLh-dY7KgmLw7BH60M6bPQpSQ")
