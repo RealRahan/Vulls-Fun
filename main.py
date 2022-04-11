@@ -189,7 +189,7 @@ async def ss(ctx, site):
 
 @client.command()
 @commands.is_owner()
-async def bash(ctx, *, arg):
+async def sh(ctx, *, arg):
  output = subprocess.getoutput(arg)
  await ctx.send(f"**py```\n{output}\n```**")
 
