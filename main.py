@@ -191,6 +191,6 @@ async def ss(ctx, site):
 @commands.is_owner()
 async def sh(ctx, *, arg):
  output = subprocess.getoutput(arg)
- await ctx.send(f"**py```\n{output}\n```**")
+ await ctx.send(f"**```py\n{output}\n```**")
 
 client.run("OTQ0ODU0MTY5MTQ2MjQ5MjU3.YhHqBA.fieLh-dY7KgmLw7BH60M6bPQpSQ")
