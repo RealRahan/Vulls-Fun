@@ -3,7 +3,6 @@ from discord.ext import commands
 import random
 import asyncio
 import os
-import subprocess
 
 prefix="."
 client=commands.Bot(command_prefix=prefix)
@@ -20,7 +19,7 @@ async def on_message(message):
 	if message.content == "السلام عليكم":
 		await message.channel.send(f"**وعليكم السلام نورت يا {message.author.name}**")
 	elif message.content == "سلام عليكم":
-		await message.channel.send(f"**وعليكم السلام ورحمة الله وبركاتة نورت سيرفر {message.guild.name}**")
+		await message.channel.send(f"**وعليكم السلام ورحمة الله وبركاتة نورت {message.guild.name}**")
 	elif message.content == "باك":
 		await message.channel.send(f"**ولكم نورت برجعتك**")
 	elif message.content == "برب":
