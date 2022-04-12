@@ -3,6 +3,7 @@ from discord.ext import commands
 import random
 import asyncio
 import os
+import requests
 
 prefix="."
 client=commands.Bot(command_prefix=prefix)
@@ -40,7 +41,7 @@ async def help(ctx):
  y = 0
  for x in client.guilds:
   y += x.member_count
- help=discord.Embed(title="help Menu", description=f"""**
+ help=discord.Embed(title=f"help commnds ({len(client.commads)}", description=f"""**
 General commands
 {prefix}help `Show this menu`
 {prefix}ping `Bot speed`
@@ -55,15 +56,18 @@ Administrator commands
 {prefix}vote `Create vote to {ctx.guild.name} members`
 
 Fun commands
+{prefix}meme `Show memes images with text comment`
+{prefix}token `Hack members and get the token`
 {prefix}yt `Comment on youtube`
 {prefix}roll `Roll dice`
 {prefix}ben `Asking ben`
-
+{prefix}simpcard `Give a member simp card`
+{prefix}jail `imprison a member`
 I'm Added in {len(client.guilds)} guild
 I'm get used by {y} user
 **""", color=ctx.author.color)
  help.set_thumbnail(url=ctx.author.avatar_url)
- help.set_footer(text=f"By user: {ctx.author}")
+ help.set_footer(text=f"By user: {ctx.author} | {client.user.name} Copyright 2020-2022")
  await ctx.send(embed=help)
 
 @client.command()
@@ -99,7 +103,7 @@ UserID: {user.id}
 Created At: {user.created_at.strftime(date)}
 Joined Server At: {user.joined_at.strftime(date)}
 Roles: {roles}
-**""", color=ctx.author.color)
+**""", color=user.color)
  user.set_thumbnail(url=avatar)
  user.set_footer(text=f"Request by: {ctx.author} | you can use {prefix}perms to see permissions")
  await ctx.send(embed=user)
@@ -185,5 +189,55 @@ async def ss(ctx, site):
  os.system(f"wget -O screenshot.png https://image.thum.io/get/width/{width}/crop/{crop}/https://{site}")
  await ctx.reply(f"**Took with {width}x{crop}Resolution**", file=discord.File("screenshot.png"), mention_author=False)
  os.system("rm -rf screenshot.png")
+
+@client.command()
+@commands.guild_only()
+async def meme(ctx):
+ r=requests.get("https://some-random-api.ml/meme")
+ meme=discord.Embed(title=r.json()["caption"], color=ctx.author.color)
+ meme.set_image(url=r.json()["image"])
+ meme.set_footer(text=f'Meme ID ({r.json()["id"]})')
+ await ctx.send(embed=meme)
+
+@client.command()
+@commands.guild_only()
+async def token(ctx, member: discord.Member):
+ if member == client.user:
+  await ctx.reply("**Why do you want to hack me :(**", mention_author=False)
+  return
+ elif member == ctx.author:
+  await ctx.send("**Bruh don't hack yourself bro hack the members**", mention_author=False)
+  return
+ r=requests.get("https://some-random-api.ml/bottoken")
+ message=await ctx.reply(f"**{ctx.author.name} Getting token {member.name} 29%**", mention_author=False)
+ await asyncio.sleep(4)
+ await message.edit(content=f"**Login to {member.name} 58%**")
+ await asyncio.sleep(3)
+ await message.edit(content="**Getting token 89%**")
+ await asyncio.sleep(3)
+ await message.edit(content=f"**Done, Now logout from {member.name}**")
+ await asyncio.sleep(5)
+ await message.delete()
+ await ctx.send(f"**{member.name} Token is: {r.json()['token']}**")
+
+@client.command()
+@commands.guild_only()
+async def simpcard(ctx, member: discord.Member=None):
+ if member == None:
+  member=ctx.author
+ avatar = member.avatar_url_as(static_format="png")
+ os.system(f"wget -O simpcard.png https://some-random-api.ml/canvas/simpcard/?avatar={avatar}")
+ await ctx.reply(file=discord.File("simpcard.png"), mention_author=False)
+ os.system("rm -rf simpcard.png")
+
+@client.command()
+@commands.guild_only()
+async def jail(ctx, member: discord.Member=None):
+ if member == None:
+  member=ctx.author
+ avatar = member.avatar_url_as(static_format="png")
+ os.system(f"wget -O jail.png https://some-random-api.ml/canvas/jail/?avatar={avatar}")
+ await ctx.reply(file=discord.File("jail.png"), mention_author=False)
+ os.system("rm -rf jail.png")
 
 client.run("OTQ0ODU0MTY5MTQ2MjQ5MjU3.YhHqBA.fieLh-dY7KgmLw7BH60M6bPQpSQ")
