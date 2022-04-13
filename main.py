@@ -1,6 +1,6 @@
 
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 import random
 import asyncio
 import os
@@ -15,26 +15,6 @@ async def on_ready():
 	print(f"تم تشغيل بوت {client.user.name} بنجاح")
 	activity = discord.Game(name=f"{prefix}help | Best Bot Forever")
 	await client.change_presence(status=discord.Status.dnd, activity=activity)
-
-@client.event
-async def on_message(message):
-	if message.content == "السلام عليكم":
-		await message.channel.send(f"**وعليكم السلام نورت يا {message.author.name}**")
-	elif message.content == "سلام عليكم":
-		await message.channel.send(f"**وعليكم السلام ورحمة الله وبركاتة نورت {message.guild.name}**")
-	elif message.content == "باك":
-		await message.channel.send(f"**ولكم نورت برجعتك**")
-	elif message.content == "برب":
-		await message.channel.send(f"**تيت لاتطول :)**")
-	elif message.content == "اهلا" :
-		await message.channel.send(f"**اهلا بك في سيرفر {message.guild.name}**")
-	elif message.content == "hello":
-		await message.channel.send(f"**Hello {message.author.name} Welcome to {message.guild.name}**")
-	elif message.content == "hi":
-		await message.channel.send(f"**Hi {message.author.name}**")
-	elif message.content == "back":
-		await message.channel.send(f"**Welcome**")
-	await client.process_commands(message)
 
 @client.command()
 @commands.guild_only()
@@ -51,6 +31,7 @@ General commands
 {prefix}perms `Get user permissions`
 {prefix}count `Timer to count down`
 {prefix}ss `ScreenShot to any website`
+{prefix}rank `Show your rank on the bot`
 
 Administrator commands
 {prefix}ban `Ban a member form the server (don't try ban yourself!)`
@@ -240,5 +221,57 @@ async def jail(ctx, member: discord.Member=None):
  os.system(f"wget -O jail.png https://some-random-api.ml/canvas/jail/?avatar={avatar}")
  await ctx.reply(file=discord.File("jail.png"), mention_author=False)
  os.system("rm -rf jail.png")
+
+with open("users.json", "ab+") as ab:
+    ab.close()
+    f = open('users.json','r+')
+    f.readline()
+    if os.stat("users.json").st_size == 0:
+      f.write("{}")
+      f.close()
+    else:
+      pass
+ 
+with open('users.json', 'r') as f:
+  users = json.load(f)
+ 
+@client.event    
+async def on_message(message):
+    if message.author.bot == False:
+        with open('users.json', 'r') as f:
+            users = json.load(f)
+        await add_experience(users, message.author)
+        await level_up(users, message.author, message)
+        with open('users.json', 'w') as f:
+            json.dump(users, f)
+            await client.process_commands(message)
+ 
+async def add_experience(users, user):
+  if not f'{user.id}' in users:
+        users[f'{user.id}'] = {}
+        users[f'{user.id}']['experience'] = 0
+        users[f'{user.id}']['level'] = 0
+  users[f'{user.id}']['experience'] += 5
+ 
+async def level_up(users, user, message):
+  experience = users[f'{user.id}']["experience"]
+  lvl_start = users[f'{user.id}']["level"]
+  lvl_end = int(experience ** (1 / 4))
+  ems=["<a:billhappy:963852258586533898>, <a:billreading:963852225719992400>, <a:superbill:963852321819881482>", "<a:superbill2:963852293772542112>"]
+  if lvl_start < lvl_end:
+    await message.channel.send(f"**{user.mention} has reached level {lvl_end} Congrats!**")
+    await message.channel.send(random.choice(ems))
+    users[f'{user.id}']["level"] = lvl_end
+
+@client.command()
+async def rank(ctx, member: discord.Member = None):
+  if member == None:
+    userlvl = users[f'{ctx.author.id}']['level']
+    userexp = users[f'{ctx.author.id}']['experience']
+    await ctx.send(f"**```\nYou are at level {userlvl}\nAnd your Exp: {userexp}\nNote: on the one message you will get 5 exp\n```**")
+  else:
+    userlvl2 = users[f'{member.id}']['level']
+    userexp = users[f'{member.id}']['experience']
+    await ctx.send(f"**```\n{member.name} at level {userlvl2}\nAnd {member.name} Exp: {userexp}\nNote: on the one message you will get 5 exp\n```**")
 
 client.run("OTQ0ODU0MTY5MTQ2MjQ5MjU3.YhHqBA.fieLh-dY7KgmLw7BH60M6bPQpSQ")
