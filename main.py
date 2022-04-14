@@ -108,10 +108,9 @@ async def ban(ctx, member: discord.Member = None,*, reason="No reason"):
   await ctx.send(embed=nomention)
  await member.ban(reason=reason)
  ban=discord.Embed(title="Banned", description=f"**{member} sucessfully banned from {ctx.guild.name}**", color=discord.Color.green())
- ban.set_thumbnail(url=random.choice(pics))
+ ban.set_thumbnail(url=member.avatar_url)
  await ctx.send(embed=ban)
  sendmsg=discord.Embed(title="You got ban", description=f"**You got ban from {ctx.guild.name} And {ctx.author.name} the author by reason: {reason}**")
- sendmsg.set_thumbnail(url=random.choice(pics))
  await member.send(embed=sendmsg)
 
 @client.command()
