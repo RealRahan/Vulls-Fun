@@ -1,14 +1,15 @@
-
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import random
 import asyncio
 import os
 import requests
+import json
 
 prefix="."
 client=commands.Bot(command_prefix=prefix)
 client.remove_command("help")
+pics=["https://media.discordapp.net/attachments/963977936308936754/963978055154536468/1772-bill-cipher.gif", "https://media.discordapp.net/attachments/963977936308936754/963978054865141790/bill-cipher-gravity-falls.gif", "https://media.discordapp.net/attachments/963977936308936754/963978055536234567/daf4a9385f021eded8dbd0c66e96f0cf604be187_00.gif", "https://media.discordapp.net/attachments/963977936308936754/963978055771103262/190c13fcc842dae188d249889c37c522779db955_00.gif", "https://media.discordapp.net/attachments/963977936308936754/963978055985033216/3c6a9a590f495789c2959a2ff02b52d8.gif", "https://media.discordapp.net/attachments/963977936308936754/963978056291192902/giphy.gif", "https://media.discordapp.net/attachments/963977936308936754/963978056849064006/daobyco-76fe49e4-e57a-4c93-988e-fe7b1f7bd06e.gif", "https://media.discordapp.net/attachments/963977936308936754/963978057167806504/tumblr_nc4mjxKbGg1sntjsso1_400.gif", "https://media.discordapp.net/attachments/963977936308936754/963978057377525830/f77f56fa9662e7b7d8eec9c4392607fb_w200.gif"]
 
 @client.event
 async def on_ready():
@@ -22,7 +23,7 @@ async def help(ctx):
  y = 0
  for x in client.guilds:
   y += x.member_count
- help=discord.Embed(title=f"help commnds ({len(client.commads)}", description=f"""**
+ help=discord.Embed(title=f"help menu ({len(client.commands)})", description=f"""**
 General commands
 {prefix}help `Show this menu`
 {prefix}ping `Bot speed`
@@ -31,7 +32,6 @@ General commands
 {prefix}perms `Get user permissions`
 {prefix}count `Timer to count down`
 {prefix}ss `ScreenShot to any website`
-{prefix}rank `Show your rank on the bot`
 
 Administrator commands
 {prefix}ban `Ban a member form the server (don't try ban yourself!)`
@@ -48,7 +48,7 @@ Fun commands
 I'm Added in {len(client.guilds)} guild
 I'm get used by {y} user
 **""", color=ctx.author.color)
- help.set_thumbnail(url=ctx.author.avatar_url)
+ help.set_thumbnail(url=random.choice(pics))
  help.set_footer(text=f"By user: {ctx.author} | {client.user.name} Copyright 2020-2022")
  await ctx.send(embed=help)
 
@@ -102,17 +102,17 @@ async def perms(ctx, user: discord.Member=None):
 @client.command()
 @commands.guild_only()
 @commands.has_permissions(ban_members=True)
-async def ban(ctx, member: discord.Member = None, *, reason="No reason"):
-  if not ctx.message.author.guild_permissions.ban_members:
-  	await ctx.send(f"**Hey {ctx.author.name} It's looks like you don't have ban members permission to ban members from {ctx.guild.name}**")
-  elif member == ctx.author:
-    await ctx.send("**ok**")
-  elif member == None:
-    await ctx.send("**mention a user ** :x:")
-    await member.send("**you wanted that**")
-  await member.send(f"**you have been banned from {ctx.message.guild.name} by {ctx.author.name} with reason: {reason}**")
-  await member.ban(reason=reason)
-  await ctx.send(f"**{member} sucessfully banned from {ctx.guild.name} with reason: {reason}**")
+async def ban(ctx, member: discord.Member = None,*, reason="No reason"):
+ if member == None:
+  nomention=discord.Embed(title="Error", description="**You forgot mention or put id or put username to ban**", color=discord.Color.red())
+  await ctx.send(embed=nomention)
+ await member.ban(reason=reason)
+ ban=discord.Embed(title="Banned", description=f"**{member} sucessfully banned from {ctx.guild.name}**", color=discord.Color.green())
+ ban.set_thumbnail(url=random.choice(pics))
+ await ctx.send(embed=ban)
+ sendmsg=discord.Embed(title="You got ban", description=f"**You got ban from {ctx.guild.name} And {ctx.author.name} the author by reason: {reason}**")
+ sendmsg.set_thumbnail(url=random.choice(pics))
+ await member.send(embed=sendmsg)
 
 @client.command()
 @commands.guild_only()
@@ -264,6 +264,7 @@ async def level_up(users, user, message):
     users[f'{user.id}']["level"] = lvl_end
 
 @client.command()
+@commands.guild_only()
 async def rank(ctx, member: discord.Member = None):
   if member == None:
     userlvl = users[f'{ctx.author.id}']['level']
