@@ -257,7 +257,7 @@ async def level_up(users, user, message):
   experience = users[f'{user.id}']["experience"]
   lvl_start = users[f'{user.id}']["level"]
   lvl_end = int(experience ** (1 / 4))
-  ems=["<a:billhappy:963852258586533898>, <a:billreading:963852225719992400>, <a:superbill:963852321819881482>", "<a:superbill2:963852293772542112>"]
+  ems=["<a:billhappy:963852258586533898>", "<a:billreading:963852225719992400>", "<a:superbill:963852321819881482>", "<a:superbill2:963852293772542112>"]
   if lvl_start < lvl_end:
     await message.channel.send(f"**{user.mention} has reached level {lvl_end} Congrats!**")
     await message.channel.send(random.choice(ems))
