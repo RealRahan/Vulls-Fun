@@ -35,9 +35,10 @@ General commands
 {prefix}count `Timer to count down`
 {prefix}ss `ScreenShot to any website`
 {prefix}lyrics `Song lyrics`
+
 Administrator commands
 {prefix}ban `Ban a member form the server (don't try ban yourself!)`
-{prefix}vote `Create vote to {ctx.guild.name} members`
+{prefix}vote `Create vote to {ctx.guild.name} members` (updating this cmd)
 
 Fun commands
 {prefix}meme `Show memes images with text comment`
