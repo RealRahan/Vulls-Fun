@@ -1,4 +1,5 @@
 
+
 import discord
 from discord.ext import commands, tasks
 import random
@@ -125,16 +126,6 @@ async def ban(ctx, member: discord.Member = None,*, reason="No reason"):
 
 @client.command()
 @commands.guild_only()
-async def yt(ctx,*, arg):
-   splited = arg.split(" ")
-   comment = "-".join(splited)
-   avatar = ctx.author.avatar_url_as(static_format="png")
-   youtube=discord.Embed(title=f"New comment by  {ctx.author.name} ✏️", color=discord.Colour.red())
-   youtube.set_image(url=f"https://some-random-api.ml/canvas/youtube-comment?username={ctx.author.name}&comment={comment}&avatar={avatar}&dark=true")
-   await ctx.send(embed=youtube)
-
-@client.command()
-@commands.guild_only()
 async def roll(ctx):
   await ctx.send(f"**{random.randint(1,100)}**")
 
@@ -154,26 +145,6 @@ async def count(ctx, t: int=None):
 
 @client.command()
 @commands.guild_only()
-async def ben(ctx, asking=None):
- if asking == None:
-  await ctx.send(f"Sir {ctx.author.name}\nusing ben:\n{prefix}ben do you love god?")
- ben=["yes", "no", "hohoho", "blehhh", "(Closing Phone)"]
- await ctx.send(random.choice(ben))
-
-@client.command()
-@commands.guild_only()
-@commands.has_permissions(manage_messages=True)
-async def vote(ctx,*, arg):
- vote=discord.Embed(title=arg, description="يرجى الانتظار هذا الامر غير متاح حاليا", color=ctx.author.color)
- vote.set_thumbnail(url=ctx.guild.icon_url)
- vote.set_footer(text=ctx.guild.name)
- react=await ctx.send(embed=vote)
-# await react.add_reaction("<:Bil_Yes:962545947571802142>")
-# await react.add_reaction("<:Bil_Neutral:962545988868931594>")
-# await react.add_reaction("<:Bil_No:962546017318883481>")
-
-@client.command()
-@commands.guild_only()
 async def ss(ctx, site):
  width = 1280
  crop = 720
@@ -184,10 +155,10 @@ async def ss(ctx, site):
 @client.command()
 @commands.guild_only()
 async def meme(ctx):
- r=requests.get("https://some-random-api.ml/meme")
- meme=discord.Embed(title=r.json()["caption"], color=ctx.author.color)
- meme.set_image(url=r.json()["image"])
- meme.set_footer(text=f'Meme ID ({r.json()["id"]})')
+ r=requests.get("https://meme-api.herokuapp.com/gimme/armeme")
+ meme=discord.Embed(title=r.json()["title"], color=ctx.author.color)
+ meme.set_image(url=r.json()["url"])
+ meme.set_footer(text=f'Ups ({r.json()["ups"]})')
  await ctx.send(embed=meme)
 
 @client.command()
