@@ -1,7 +1,6 @@
 
-
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
 import random
 import asyncio
 import os
@@ -15,7 +14,7 @@ pics=["https://media.discordapp.net/attachments/963977936308936754/9639780551545
 @client.event
 async def on_ready():
 	print(f"تم تشغيل بوت {client.user.name} بنجاح")
-	activity = discord.Game(name=f"{prefix}help | Best Bot Forever")
+	activity = discord.Game(name=f"{prefix}help | يدعم اللغة العربية بالكامل")
 	await client.change_presence(status=discord.Status.dnd, activity=activity)
 
 @client.command()
@@ -26,51 +25,47 @@ async def help(ctx):
   y += x.member_count
  await ctx.reply("<a:loading:964951108353159249>", delete_after=3, mention_author=False)
  await asyncio.sleep(3)
- help=discord.Embed(title=f"help menu ({len(client.commands)})", description=f"""**
-General commands
-{prefix}help `Show this menu`
-{prefix}ping `Bot speed`
-{prefix}server `Getting server info`
-{prefix}user `Getting user info`
-{prefix}perms `Get user permissions`
-{prefix}count `Timer to count down`
-{prefix}ss `ScreenShot to any website`
-{prefix}lyrics `Song lyrics`
+ help=discord.Embed(title=f"قائمة المساعدة ({len(client.commands)})", description=f"""**
+الأوامر العامة
+{prefix}help `هذة القائمة`
+{prefix}ping `سرعة استجابة البوت`
+{prefix}server `الحصول على معلومات الخادم`
+{prefix}user `الحصول على معلومات المستخدم`
+{prefix}perms `رؤية صلاحية المستخدم او صلاحياتك`
+{prefix}count `عداد وقت، عندما ينتهي يقوم بمنشنتك`
+{prefix}ss `لقطة شاشة لأي موقع`
+{prefix}lyrics `كلمات الاغنية`
 
-Administrator commands
-{prefix}ban `Ban a member form the server (don't try ban yourself!)`
-{prefix}vote `Create vote to {ctx.guild.name} members` (updating this cmd)
+أوامر المشرفون
+{prefix}ban `حظر مستخدم من السيرفر (لا تجربة على نفسك!)`
 
-Fun commands
-{prefix}meme `Show memes images with text comment`
-{prefix}token `Hack members and get the token`
-{prefix}yt `Comment on youtube`
-{prefix}roll `Roll dice`
-{prefix}ben `Asking ben`
-{prefix}simpcard `Give a member simp card`
-{prefix}jail `imprison a member`
-I'm Added in {len(client.guilds)} guild
-I'm get used by {y} user
+أوامر للمتعة
+{prefix}meme `صور مضحكة مع تعليق نصي`
+{prefix}roll `رمي النرد`
+{prefix}simpcard `إعطاء شخص بطاقة مغفل`
+{prefix}jail `سجن مستخدم`
+تمت اضافتي في {len(client.guilds)} سيرفر
+يتم استخدامي من {y} مستخدم
 **""", color=ctx.author.color)
  help.set_thumbnail(url=random.choice(pics))
- help.set_footer(text=f"By user: {ctx.author} | {client.user.name} Copyright 2020-2022")
+ help.set_footer(text=f"بواسطة: {ctx.author} | كافة حقوق رموز البوت محفوظة لسنة 2020-2022")
  await ctx.send(embed=help)
 
 @client.command()
 @commands.guild_only()
 async def ping(ctx):
-  await ctx.send(f"**{round(client.latency * 1000)}MS**")
+  await ctx.send(f"**{round(client.latency * 1000)}ميلي ثانية**")
 
 @client.command()
 @commands.guild_only()
 async def server(ctx):
-    embed = discord.Embed(title=f"{ctx.guild.name} Info")
-    embed.add_field(name='🆔Server ID', value=f"{ctx.guild.id}", inline=True)
-    embed.add_field(name='📆Created At', value=ctx.guild.created_at.strftime("%b %d %Y"), inline=True)
-    embed.add_field(name='👑Owner', value=f"<@{ctx.guild.owner_id}>", inline=True)
-    embed.add_field(name='👥Members', value=f'{ctx.guild.member_count} Members', inline=True)
-    embed.add_field(name='💬Channels', value=f'{len(ctx.guild.text_channels)} Text | {len(ctx.guild.voice_channels)} Voice', inline=True)
-    embed.add_field(name='🌎Region', value=f'{ctx.guild.region}', inline=True)
+    embed = discord.Embed(title=f"{ctx.guild.name}")
+    embed.add_field(name='🆔الرقم التعريفي للسيرفر', value=f"{ctx.guild.id}", inline=True)
+    embed.add_field(name='📆انشئ بتاريخ', value=ctx.guild.created_at.strftime("%b %d %Y"), inline=True)
+    embed.add_field(name='👑المالك', value=f"<@{ctx.guild.owner_id}>", inline=True)
+    embed.add_field(name='👥الأعضاء', value=f'{ctx.guild.member_count} عضو', inline=True)
+    embed.add_field(name='💬الرومات', value=f'{len(ctx.guild.text_channels)} كتابي | {len(ctx.guild.voice_channels)} صوتي', inline=True)
+    embed.add_field(name='🌎موقع الاتصال', value=f'{ctx.guild.region}', inline=True)
     embed.set_thumbnail(url=ctx.guild.icon_url)   
     embed.set_author(name=f'{ctx.author.name}', icon_url=ctx.message.author.avatar_url)
     await ctx.send(embed=embed)
@@ -83,22 +78,22 @@ async def user(ctx, user: discord.Member = None):
  avatar = user.avatar_url_as(static_format="png")
  date = "%b %d %Y"
  roles = ' '.join([r.mention for r in user.roles][1:])
- msg=await ctx.send("**Getting user id | <a:loading:964951108353159249>**")
+ msg=await ctx.send("**اخذ الرقم التعريفي | <a:loading:964951108353159249>**")
  await asyncio.sleep(0.20)
- await msg.edit(content="**Getting user Creation date | <a:loading:964951108353159249>**")
+ await msg.edit(content="**اخذ تاريخ الانشاء | <a:loading:964951108353159249>**")
  await asyncio.sleep(0.20)
- await msg.edit(content="**Getting joined at Date**")
+ await msg.edit(content="**اخذ تاريخ الدخول | <a:loading:964951108353159249>**")
  await asyncio.sleep(0.20)
- await msg.edit(content="**Getting roles | <a:loading:964951108353159249>**")
+ await msg.edit(content="**اخذ معلومات الرتب | <a:loading:964951108353159249>**")
  await msg.delete()
- user=discord.Embed(title=f"{user.name}'s info", description=f"""**
-UserID: {user.id}
-Created At: {user.created_at.strftime(date)}
-Joined Server At: {user.joined_at.strftime(date)}
-Roles: {roles}
+ user=discord.Embed(title=f"{user.name}", description=f"""**
+الرقم التعريفي: {user.id}
+انشئ بتاريخ: {user.created_at.strftime(date)}
+دخل {ctx.guild.name} بتاريخ: {user.joined_at.strftime(date)}
+الرتب: {roles}
 **""", color=user.color)
  user.set_thumbnail(url=avatar)
- user.set_footer(text=f"Request by: {ctx.author} | you can use {prefix}perms to see permissions")
+ user.set_footer(text=f"بطلب من: {ctx.author} | {prefix}perms لرؤية صلاحيات المستخدم")
  await ctx.send(embed=user)
 
 @client.command()
@@ -115,13 +110,13 @@ async def perms(ctx, user: discord.Member=None):
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, member: discord.Member = None,*, reason="No reason"):
  if member == None:
-  nomention=discord.Embed(title="Error", description="**You forgot mention or put id or put username to ban**", color=discord.Color.red())
+  nomention=discord.Embed(title="خطأ", description="**نسيت ذكر أو وضع معرف أو وضع اسم المستخدم في الحظر**", color=discord.Color.red())
   await ctx.send(embed=nomention)
  await member.ban(reason=reason)
- ban=discord.Embed(title="Banned", description=f"**{member} sucessfully banned from {ctx.guild.name}**", color=discord.Color.green())
+ ban=discord.Embed(title="تم", description=f"**تم حظر {member} بنجاح من {ctx.guild.name}**", color=discord.Color.green())
  ban.set_thumbnail(url=member.avatar_url)
  await ctx.send(embed=ban)
- sendmsg=discord.Embed(title="You got ban", description=f"**You got ban from {ctx.guild.name} And {ctx.author.name} the author by reason: {reason}**")
+ sendmsg=discord.Embed(title="حصلت على حظر", description=f"**حصلت على حظر من {ctx.guild.name} بواسطة {ctx.author.name} حسب السبب: {reason}\nاذا كان سوء تفاهم ف تحدث معة: {ctx.author}**")
  await member.send(embed=sendmsg)
 
 @client.command()
@@ -131,15 +126,13 @@ async def roll(ctx):
 
 @client.command()
 @commands.guild_only()
-async def count(ctx, t: int=None):
-    if t == None:
-     await ctx.send(f"**```\nUsage:\n{prefix}count [Number]\nThe bot will mention you when the timer end\nBot counting in seconds\n```**")
+async def count(ctx, t:int):
     message=await ctx.send(f"**{t}**")
     while t > 0:
         t -=1
         await message.edit(content=f"**{t}**")
         await asyncio.sleep(1)
-    await message.edit(content=f"**Ended, By {ctx.author.name}**")
+    await message.edit(content=f"**انتهى بواسطة {ctx.author.name}**")
     mention=await ctx.send(ctx.author.mention)
     await mention.delete()
 
@@ -149,7 +142,7 @@ async def ss(ctx, site):
  width = 1280
  crop = 720
  os.system(f"wget -O screenshot.png https://image.thum.io/get/width/{width}/crop/{crop}/https://{site}")
- await ctx.reply(f"**Took with {width}x{crop}Resolution**", file=discord.File("screenshot.png"), mention_author=False)
+ await ctx.reply(f"**{width}x{crop}**", file=discord.File("screenshot.png"), mention_author=False)
  os.system("rm -rf screenshot.png")
 
 @client.command()
@@ -158,29 +151,8 @@ async def meme(ctx):
  r=requests.get("https://meme-api.herokuapp.com/gimme/armeme")
  meme=discord.Embed(title=r.json()["title"], color=ctx.author.color)
  meme.set_image(url=r.json()["url"])
- meme.set_footer(text=f'Ups ({r.json()["ups"]})')
+ meme.set_footer(text=f'Ups: ({r.json()["ups"]})')
  await ctx.send(embed=meme)
-
-@client.command()
-@commands.guild_only()
-async def token(ctx, member: discord.Member):
- if member == client.user:
-  await ctx.reply("**Why do you want to hack me :(**", mention_author=False)
-  return
- elif member == ctx.author:
-  await ctx.send("**Bruh don't hack yourself bro hack the members**", mention_author=False)
-  return
- r=requests.get("https://some-random-api.ml/bottoken")
- message=await ctx.reply(f"**{ctx.author.name} Getting token {member.name} 29%**", mention_author=False)
- await asyncio.sleep(4)
- await message.edit(content=f"**Login to {member.name} 58%**")
- await asyncio.sleep(3)
- await message.edit(content="**Getting token 89%**")
- await asyncio.sleep(3)
- await message.edit(content=f"**Done, Now logout from {member.name}**")
- await asyncio.sleep(5)
- await message.delete()
- await ctx.send(f"**{member.name} Token is: {r.json()['token']}**")
 
 @client.command()
 @commands.guild_only()
@@ -206,9 +178,11 @@ async def jail(ctx, member: discord.Member=None):
 async def lyrics(ctx,*, arg):
  r=requests.get(f"https://some-random-api.ml/lyrics/?title={arg}")
  if not r.status_code == 200:
- 	await ctx.send(f"**Could find {arg} song**")
+ 	await ctx.send(f"**لايمكنني العثور على الاغنية: {arg}**")
+ if len(r.json()["lyrics"]) > 6000:
+ 	await ctx.send("**الأغنية تتعدى الـ6000 حرف وهذا هو العدد المسموح للديسكورد.**")
  l=discord.Embed(title=f"{r.json()['title']} ({r.json()['author']})", description=f"**{r.json()['lyrics']}**", color=ctx.author.color)
  l.set_thumbnail(url=r.json()['thumbnail']['genius'])
  await ctx.send(embed=l)
 
-client.run("OTQ0ODU0MTY5MTQ2MjQ5MjU3.YhHqBA.fieLh-dY7KgmLw7BH60M6bPQpSQ")
+client.run("OTQ0ODU0MTY5MTQ2MjQ5MjU3.YhHqBA.jri3z5nkNJal6Z7yoKY2UrLOkus")
