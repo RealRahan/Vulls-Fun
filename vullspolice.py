@@ -5,7 +5,6 @@ import random
 import asyncio
 import os
 import requests
-import datetime
 
 prefix="."
 intents = discord.Intents().all()
