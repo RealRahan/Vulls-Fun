@@ -133,4 +133,4 @@ async def img(ctx,*, search=None):
  image.set_footer(text="محرك بحث جوجل ©2022", icon_url="https://freesvg.org/img/1534129544.png")
  await ctx.reply(embed=image, mention_author=False)
 
-client.run("OTg3NDA4MTIzMDU4ODYwMDYz.GeOw-a.pYlrzLwMVph2qTe6_zWz63KkgRuy-udOleRCrA")
+client.run("OTg3NDA4MTIzMDU4ODYwMDYz.GUOh9u.weUhj9iMormmgasobubiNjyOaQUJxR50g2-JC4")
