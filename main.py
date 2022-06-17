@@ -123,14 +123,14 @@ async def fact(ctx):
 @client.command()
 async def img(ctx,*, search=None):
  if search == None:
-  await ctx.send(f"**الاستخدام:\n{prefix}img meme**")
+  await ctx.send(f"**الاستخدام:\n{prefix}img trollface**")
   return
  r=requests.get(f"https://normal-api.tk/image-search?query={search}")
  if r.json()["status"] == 400:
-  await ctx.send("**لا يمكنني العثور على هذة الصورة**")
+  await ctx.send("**مالقيتها للأسف.**")
  image=discord.Embed(description=f"**{search}**", color=ctx.author.color)
  image.set_image(url=r.json()["image"])
  image.set_footer(text="محرك بحث جوجل ©2022", icon_url="https://freesvg.org/img/1534129544.png")
  await ctx.reply(embed=image, mention_author=False)
 
-client.run("OTYyMzY0MzQ0MjE2MTk5MjI4.GXGbPQ.cRMd5xwud9Thjuulo3EORTMD2Libq-isQwgsP8")
+client.run("OTg3NDA4MTIzMDU4ODYwMDYz.GeOw-a.pYlrzLwMVph2qTe6_zWz63KkgRuy-udOleRCrA")
