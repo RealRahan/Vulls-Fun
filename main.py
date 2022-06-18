@@ -104,7 +104,7 @@ async def img(ctx,*, search=None):
  if search == None:
   await ctx.send(f"**الاستخدام:\n{prefix}img trollface**")
   return
- if badwords in search:
+ if search in badwords:
   await ctx.message.delete()
   await ctx.send("**ممنوع يرجى الالتزام بـ<#916378803205451879>**")
   return
