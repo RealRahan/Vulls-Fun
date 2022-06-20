@@ -91,7 +91,7 @@ async def respect(ctx, member: discord.Member=None):
   member=ctx.author
  avatar = member.avatar_url_as(static_format="png")
  os.system(f"wget -O respect.png https://some-random-api.ml/canvas/passed/?avatar={avatar}")
- await ctx.reply(f"ريسبكت {member.name}", file=disnake.File("respect.png"), mention_author=False)
+ await ctx.reply(f"ريسبكت {member.name}", file=discord.File("respect.png"), mention_author=False)
  os.system("rm -rf respect.png")
 
 @client.command()
