@@ -26,6 +26,7 @@ async def help(ctx):
 {prefix}love `نسبة الحب بين الطرفين`
 {prefix}respect `تعطي شخص نقاط احترام`
 {prefix}pixel `صورة الشخص لكن بكسل`
+{prefix}trans `ترجمة الكلام`
 {prefix}fact `معلومات عن كل شيء`
 {prefix}wanted `تكون مطلوب`
 {prefix}gun `تحط مسدس بصورتك`
@@ -139,5 +140,11 @@ async def rain(ctx, member: discord.Member=None):
  os.system(f"wget -O rain.gif https://api.jeyy.xyz/image/rain?image_url={avatar}")
  await ctx.reply(file=discord.File("rain.gif"), mention_author=False)
  os.system("rm -rf rain.gif")
+
+@client.command()
+@commands.guild_only()
+async def trans(ctx, txt):
+ trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={txt}")
+ await ctx.send(f"**{trans.json()['translated']}**")
 
 client.run("OTg3NDA4MTIzMDU4ODYwMDYz.GUOh9u.weUhj9iMormmgasobubiNjyOaQUJxR50g2-JC4")
