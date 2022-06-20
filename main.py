@@ -14,8 +14,8 @@ client.remove_command("help")
 @client.event
 async def on_ready():
 	print(f"تم تشغيل بوت {client.user.name} بنجاح")
-	activity = discord.Game(name=f"The Nigga Bot")
-	await client.change_presence(status=discord.Status.idle, activity=activity)
+	activity = discord.Game(name=f"Vulls Channel")
+	await client.change_presence(status=discord.Status.watching, activity=activity)
 
 @client.command()
 @commands.guild_only()
