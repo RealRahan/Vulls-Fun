@@ -148,7 +148,7 @@ async def trans(ctx,*, txt):
  await ctx.send(f"**{trans.json()['translated']}**")
 
 @client.command()
-async def userstatus(ctx,*, member: discord.Member=None)
+async def userstatus(ctx,*, member: discord.Member=None):
  if member == None:
   member=ctx.author
  if r.json()["status"] == 200:
