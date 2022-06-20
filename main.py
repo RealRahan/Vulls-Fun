@@ -143,7 +143,7 @@ async def rain(ctx, member: discord.Member=None):
 
 @client.command()
 @commands.guild_only()
-async def trans(ctx, txt):
+async def trans(ctx,*, txt):
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={txt}")
  await ctx.send(f"**{trans.json()['translated']}**")
 
