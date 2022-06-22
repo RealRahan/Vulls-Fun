@@ -175,7 +175,6 @@ async def verify(ctx,*, user: discord.Member=None):
 
 @client.command()
 @commands.guild_only()
-@commands.has_permissions(manage_messages=True)
 async def ques(ctx):
  if ctx.channel.id == 987012780102123540:
   await ctx.send("""**
