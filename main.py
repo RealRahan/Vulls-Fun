@@ -174,7 +174,7 @@ async def verify(ctx,*, user: discord.Member=None):
 
 @client.command()
 @commands.guild_only()
-async def rain(ctx, member: discord.Member=None):
+async def gay(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
  avatar = member.avatar_url_as(static_format="png")
