@@ -40,7 +40,7 @@ async def help(ctx):
 {prefix}wanted `تكون مطلوب`
 {prefix}gun `تحط مسدس بصورتك`
 {prefix}chad `نسبة التشاد عند الشخص`
-{prefix}rain `جعوص`
+{prefix}pet `جعوص`
 {prefix}gay `الوان مشكوكة على صورة الشخص`
 **""", color=ctx.author.color)
  fun.set_thumbnail(url=ctx.author.avatar_url)
