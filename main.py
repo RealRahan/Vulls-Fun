@@ -57,7 +57,7 @@ async def chad(ctx, member: discord.Member=None):
  if member==None:
   member=ctx.author
  em=["<:Chad:980832575729840148>", "<:ohhhhhhh:980453612562038856>", "<:nigga:980838362602696704>", "<:quandledingle:980860190872182824>", "<:mrpain:980824605587537970>", "<:donot:980837048007147541>", "<:dkdk:978836970866376804>", "<:gigavulls:978971180558086205>"]
- imgs=["https://media.discordapp.net/attachments/989476585323253762/989897014957465681/gigachad-minecraft-meme.gif", "https://media.discordapp.net/attachments/989476585323253762/989897015481745418/gigachad-chad.gif", "https://media.discordapp.net/attachments/989476585323253762/989897013913067540/giga-chad.gif", "https://media.discordapp.net/attachments/989476585323253762/989897014408019978/roblox-gigachad.gif", "https://media.discordapp.net/attachments/989476585323253762/989897013913067540/giga-chad.gif"]
+ imgs=["https://media.discordapp.net/attachments/989476585323253762/989897014957465681/gigachad-minecraft-meme.gif", "https://media.discordapp.net/attachments/989476585323253762/989897015481745418/gigachad-chad.gif", "https://media.discordapp.net/attachments/989476585323253762/989897014718369862/chad-gigachad_1.gif", "https://media.discordapp.net/attachments/989476585323253762/989897014408019978/roblox-gigachad.gif", "https://media.discordapp.net/attachments/989476585323253762/989897013913067540/giga-chad.gif"]
  chad=discord.Embed(title="**Chad Rate**", description=f"**{member.name} تشاد بنسبة {random.randint(0, 100)}% {random.choice(em)}**", color=ctx.author.color)
  chad.set_thumbnail(url=random.choice(imgs))
  await ctx.reply(embed=chad, mention_author=False)
