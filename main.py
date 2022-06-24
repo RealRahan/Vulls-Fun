@@ -58,7 +58,7 @@ async def chad(ctx, member: discord.Member=None):
   member=ctx.author
  em=["<:Chad:980832575729840148>", "<:ohhhhhhh:980453612562038856>", "<:nigga:980838362602696704>", "<:quandledingle:980860190872182824>", "<:mrpain:980824605587537970>", "<:donot:980837048007147541>", "<:dkdk:978836970866376804>", " <:gigavulls:978971180558086205>"]
  chad=discord.Embed(title="**Chad Rate**", description=f"**{member.name} تشاد بنسبة {random.randint(0, 100)}% {random.choice(em)}**", color=ctx.author.color)
- chad.set_thumbnail(url=member.avatar_url)
+ chad.set_thumbnail(url="https://i.kym-cdn.com/photos/images/list/002/386/222/178.gif")
  await ctx.reply(embed=chad, mention_author=False)
 
 @client.command()
