@@ -65,7 +65,7 @@ async def help(ctx):
 {prefix}soviet `هل انت سوفيتي او نازي؟`
 {prefix}pet `جعوص`
 {prefix}gay `الوان مشكوكة على صورة الشخص`
-{prefix}hgay "نسبة الشيء ذاك للشخص`
+{prefix}hgay `نسبة الشيء ذاك للشخص`
 **""", color=discord.Color.random())
   fun.set_thumbnail(url=ctx.author.avatar_url)
   await msg.edit(embed=fun)
