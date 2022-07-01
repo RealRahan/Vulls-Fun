@@ -285,7 +285,7 @@ async def sys(ctx):
  info.set_thumbnail(url=ctx.author.avatar_url)
  msg=await ctx.send(embed=info)
  while True:
-  time.sleep(1)
+  time.sleep(5)
   info=discord.Embed(title=f"**معلومات نظام البوت**", description=f"""**
 النظام: {platform.platform()}
 المعالج: {cpuinfo.get_cpu_info()['brand_raw']}
