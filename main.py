@@ -47,7 +47,6 @@ async def help(ctx):
 {prefix}pet `جعوص`
 {prefix}gay `الوان مشكوكة على صورة الشخص`
 {prefix}hgay `نسبة الشيء ذاك للشخص`
-{prefix}ss `سكرين شوت لموقع لو كنت تشك بالرابط اورخايف يكون هكر بينفعك الامر`
 **""", color=discord.Color.random())
  fun.set_thumbnail(url=ctx.author.avatar_url)
  await ctx.send(embed=fun)
@@ -244,14 +243,5 @@ async def amoi(ctx, member: discord.Member=None):
  a=discord.Embed(title="**الدَّوْلَةُ الأُمَوِيَّةُ**", description=f"**{member.name} أموي بنسبة {random.randint(0, 100)}%**", color=ctx.author.color)
  a.set_thumbnail(url="https://media.discordapp.net/attachments/978981832852910140/991600617510420480/unknown.png")
  await ctx.reply(embed=a, mention_author=False)
-
-@client.command()
-@commands.guild_only()
-async def ss(ctx, site=None):
- if site == None:
-  await ctx.send(f"**{prefix}ss google.com**")
- os.system(f"wget -O screenshot.png https://api.popcat.xyz/screenshot?url=https://{site}")
- await ctx.reply(file=discord.File("screenshot.png"), mention_author=False)
- os.system("rm -rf screenshot.png")
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
