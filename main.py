@@ -250,7 +250,7 @@ async def amoi(ctx, member: discord.Member=None):
 async def editbot(ctx):
  msg = await ctx.send("حسنا...")
  def check(msg):
-  if msg.author.id == ctx.author.id
+  if msg.author.id == ctx.author.id:
    await msg.edit("1 - تغيير افاتار البوت \n 2 - تغيير اسم البوت")
    anw = await client.wait_for("message",check=check)
     if anw.content == "1":
