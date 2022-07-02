@@ -156,7 +156,7 @@ async def verify(ctx, user: discord.Member=None):
    return
   await user.add_roles(discord.utils.get(user.guild.roles, name="عبدو"))
   await user.remove_roles(discord.utils.get(user.guild.roles, name="Non-verified"))
-  verify=discord.Embed(description=f"**تم توثيق {user.name} ✅**")
+  verify=discord.Embed(description=f"**تم توثيق {user.name} ✅**", color=discord.Color.green())
   await ctx.send(embed=verify)
  else:
   return
