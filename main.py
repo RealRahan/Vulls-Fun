@@ -252,6 +252,6 @@ async def meme(ctx):
  meme=discord.Embed(title=r.json()["title"], color=ctx.author.color)
  meme.set_image(url=r.json()["url"])
  meme.set_footer(text=f'Up Vote: ({r.json()["ups"]})')
- await ctx.send(embed=meme) 
+ await ctx.send(embed=meme)
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
