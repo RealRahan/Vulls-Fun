@@ -253,13 +253,13 @@ async def editbot(ctx):
   if msg.author.id == ctx.author.id:
    await msg.edit("1 - تغيير افاتار البوت \n 2 - تغيير اسم البوت")
    anw = await client.wait_for("message",check=check)
-    if anw.content == "1":
-     await ctx.send("ارسل رابط الافاتار")
-     avatarurl =  await client.wait_for("message",check=check)
-     await client.user.edit(avatar=avataurl.content)
-    if anw.content == "2":
-     await ctx.send("ارسل الإسم الجديد")
-     name = await client.wait_for("message",check=check)
-     await client.user.edit(username=name.content)
+  if anw.content == "1":
+   await ctx.send("ارسل رابط الافاتار")
+   avatarurl =  await client.wait_for("message",check=check)
+   await client.user.edit(avatar=avataurl.content)
+  if anw.content == "2":
+   await ctx.send("ارسل الإسم الجديد")
+   name = await client.wait_for("message",check=check)
+   await client.user.edit(username=name.content)
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
