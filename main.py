@@ -248,10 +248,9 @@ async def amoi(ctx, member: discord.Member=None):
 @commands.guild_only()
 @commands.has_permissions(manage_messages=True)
 async def editbot(ctx):
- msg = await ctx.send("حسنا...")
+ await ctx.send("**(1) تغيير افتار البوت\n(2) تغيير اسم البوت")
  def check(msg):
   if msg.author.id == ctx.author.id:
-   await ctx.send("1 - تغيير افاتار البوت \n 2 - تغيير اسم البوت")
    anw = await client.wait_for("message",check=check)
   if anw.content == "1":
    await ctx.send("ارسل رابط الافاتار")
