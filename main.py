@@ -46,8 +46,7 @@ async def help(ctx):
 {prefix}amoi `هل انت تدعم الحزب الأموي الأسلامي؟`
 {prefix}pet `جعوص`
 {prefix}gay `الوان مشكوكة على صورة الشخص`
-{prefix}hgay `نسبة الشيء ذاك للشخص`
-{prefix}meme `ميمز باللغة العربية من ريديت`
+{prefix}hgay `نسبة الشيء ذاك`
 **""", color=discord.Color.random())
  fun.set_thumbnail(url=ctx.author.avatar_url)
  await ctx.send(embed=fun)
@@ -247,11 +246,20 @@ async def amoi(ctx, member: discord.Member=None):
 
 @client.command()
 @commands.guild_only()
-async def meme(ctx):
- r=requests.get("https://meme-api.herokuapp.com/gimme/armeme")
- meme=discord.Embed(title=r["title"], color=ctx.author.color)
- meme.set_image(url=r["url"])
- meme.set_footer(text=f'Up Vote: ({r["ups"]})')
- await ctx.send(embed=meme)
+@commands.has_permissions(manage_messages=True)
+async def editbot(ctx):
+ msg = await ctx.send("حسنا...")
+ def check(msg):
+  if msg.author.id == ctx.author.id
+   await msg.edit("1 - تغيير افاتار البوت \n 2 - تغيير اسم البوت")
+   anw = await client.wait_for("message",check=check)
+    if anw.content == "1":
+      await ctx.send("ارسل رابط الافاتار")
+      avatarurl =  await client.wait_for("message",check=check)
+      await client.user.edit(avatar=avataurl.content)
+    if anw.content == "2":
+       await ctx.send("ارسل الإسم الجديد")
+       name = await client.wait_for("message",check=check)
+       await client.user.edit(username=name.content)
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
