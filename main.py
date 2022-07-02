@@ -232,7 +232,7 @@ def restart_bot():
 @client.command()
 @commands.has_permissions(manage_messages=True)
 async def reboot(ctx):
-  await ctx.send("**جاري إعادة التشغيل**")
+  await ctx.send("**تمت إعادة التشغيل**")
   restart_bot()
 
 @client.command()
