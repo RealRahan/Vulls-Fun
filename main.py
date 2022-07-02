@@ -248,9 +248,9 @@ async def amoi(ctx, member: discord.Member=None):
 @client.command()
 @commands.guild_only()
 async def meme(ctx):
- r=requests.get("https://meme-api.herokuapp.com/gimme/armeme").json()
+ r=requests.get("https://meme-api.herokuapp.com/gimme/armeme")
  meme=discord.Embed(title=r["title"], color=ctx.author.color)
- meme.set_image(url=r.json()["url"])
+ meme.set_image(url=r["url"])
  meme.set_footer(text=f'Up Vote: ({r["ups"]})')
  await ctx.send(embed=meme)
 
