@@ -251,7 +251,7 @@ async def editbot(ctx):
  msg = await ctx.send("حسنا...")
  def check(msg):
   if msg.author.id == ctx.author.id:
-   await msg.edit("1 - تغيير افاتار البوت \n 2 - تغيير اسم البوت")
+   await ctx.send("1 - تغيير افاتار البوت \n 2 - تغيير اسم البوت")
    anw = await client.wait_for("message",check=check)
   if anw.content == "1":
    await ctx.send("ارسل رابط الافاتار")
