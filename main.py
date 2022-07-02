@@ -245,4 +245,13 @@ async def amoi(ctx, member: discord.Member=None):
  a.set_thumbnail(url="https://media.discordapp.net/attachments/978981832852910140/991600617510420480/unknown.png")
  await ctx.reply(embed=a, mention_author=False)
 
+@client.command()
+@commands.guild_only()
+async def meme(ctx):
+ r=requests.get("https://meme-api.herokuapp.com/gimme/armeme")
+ meme=discord.Embed(title=r.json()["title"], color=ctx.author.color)
+ meme.set_image(url=r.json()["url"])
+ meme.set_footer(text=f'Ups Vote: ({r.json()["ups"]})')
+ await ctx.send(embed=meme)
+
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
