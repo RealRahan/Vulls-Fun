@@ -205,7 +205,7 @@ async def nazi(ctx, member: discord.Member=None):
  if member==None:
   member=ctx.author
  nazi=discord.Embed(title="**Nazi Rate**", description=f"**{member.name} نازي بنسبة {random.randint(-10, 100)}%**", color=ctx.author.color)
- nazi.set_thumbnail(url="https://c.tenor.com/25GvA0XYO6oAAAAC/nazi-flag.gif")
+ nazi.set_thumbnail(url="https://www.gifcen.com/wp-content/uploads/2021/04/hitler-gif-1.gif")
  await ctx.reply(embed=nazi, mention_author=False)
 
 @client.command()
