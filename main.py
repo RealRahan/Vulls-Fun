@@ -223,7 +223,7 @@ async def soviet(ctx, member: discord.Member=None):
  if member==None:
   member=ctx.author
  soviet=discord.Embed(title="**Soviet Union**", description=f"**{member.name} سوفيتي بنسبة {random.randint(-1, 100)}%**", color=ctx.author.color)
- soviet.set_thumbnail(url="https://i.imgflip.com/4y8rea.gif")
+ soviet.set_thumbnail(url="https://www.gizmodo.com.au/wp-content/uploads/sites/2/2017/05/30/mywfcnfhna0mnlpckifd.gif")
  await ctx.reply(embed=soviet, mention_author=False)
 
 def restart_bot(): 
