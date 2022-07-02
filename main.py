@@ -62,7 +62,7 @@ async def chad(ctx, member: discord.Member=None):
  if member==None:
   member=ctx.author
  chad=discord.Embed(title="**Chad Rate**", description=f"**{member.name} تشاد بنسبة {random.randint(0, 100)}%**", color=ctx.author.color)
- chad.set_thumbnail(url=member.avatar_url)
+ chad.set_thumbnail(url="https://c.tenor.com/epNMHGvRyHcAAAAd/gigachad-chad.gif")
  await ctx.reply(embed=chad, mention_author=False)
 
 @client.command()
