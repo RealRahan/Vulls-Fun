@@ -244,21 +244,4 @@ async def amoi(ctx, member: discord.Member=None):
  a.set_thumbnail(url="https://media.discordapp.net/attachments/978981832852910140/991600617510420480/unknown.png")
  await ctx.reply(embed=a, mention_author=False)
 
-@client.command()
-@commands.guild_only()
-@commands.has_permissions(manage_messages=True)
-async def editbot(ctx):
- await ctx.send("**(1) تغيير افتار البوت\n(2) تغيير اسم البوت")
- def check(msg):
-  if msg.author.id == ctx.author.id:
-   anw = await client.wait_for("message",check=check)
-  if anw.content == "1":
-   await ctx.send("ارسل رابط الافاتار")
-   avatarurl =  await client.wait_for("message",check=check)
-   await client.user.edit(avatar=avataurl.content)
-  if anw.content == "2":
-   await ctx.send("ارسل الإسم الجديد")
-   name = await client.wait_for("message",check=check)
-   await client.user.edit(username=name.content)
-
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
