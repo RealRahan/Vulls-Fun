@@ -47,6 +47,7 @@ async def help(ctx):
 {prefix}pet `جعوص`
 {prefix}gay `الوان مشكوكة على صورة الشخص`
 {prefix}hgay `نسبة الشيء ذاك`
+{prefix}drip `بزنس مان`
 **""", color=discord.Color.random())
  fun.set_thumbnail(url=ctx.author.avatar_url)
  await ctx.send(embed=fun)
