@@ -91,12 +91,14 @@ async def say(ctx,*, arg=None):
  await ctx.send(f"**{arg}**")
  
 @client.command()
+@commands.guild_only()
 async def love(ctx, name1=None,*, name2=None):
  love=discord.Embed(description=f"**نسبة الحب بين {name1} و {name2} هي {random.randint(-1, 100)}%**", color=ctx.author.color)
  love.set_thumbnail(url=ctx.guild.icon_url)
  await ctx.send(embed=love)
 
 @client.command()
+@commands.guild_only()
 async def respect(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
@@ -106,6 +108,7 @@ async def respect(ctx, member: discord.Member=None):
  os.system("rm -rf respect.png")
 
 @client.command()
+@commands.guild_only()
 async def pixel(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
@@ -254,5 +257,15 @@ async def id(ctx,*, member: discord.Member=None):
   return
  await ctx.reply(f"الأيدي حق {member.name}:", mention_author=False)
  await ctx.send(member.id)
+
+@client.command()
+@commands.guild_only()
+async def drip(ctx, member: discord.Member=None):
+ if member == None:
+  member=ctx.author
+ avatar = member.avatar_url_as(static_format="png")
+ os.system(f"wget -O drip.png https://api.popcat.xyz/drip?image={avatar}")
+ await ctx.reply(file=discord.File("drip.png"), mention_author=False)
+ os.system("rm -rf drip.png")
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
