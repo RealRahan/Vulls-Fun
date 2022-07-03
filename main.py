@@ -248,8 +248,10 @@ async def amoi(ctx, member: discord.Member=None):
 @client.command()
 async def id(ctx,*, member: discord.Member=None):
  if member == None:
-  await ctx.reply(f"الأيدي حقك: {ctx.author.id}", mention_author=False)
+  await ctx.reply(f"الأيدي حقك:", mention_author=False)
+  await ctx.send(ctx.author.id)
   return
- await ctx.reply(f"الأيدي حق {member.name}: {member.id}**", mention_author=False)
+ await ctx.reply(f"الأيدي حق {member.name}:", mention_author=False)
+ await ctx.send(member.id)
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
