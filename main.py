@@ -245,4 +245,11 @@ async def amoi(ctx, member: discord.Member=None):
  a.set_thumbnail(url="https://media.discordapp.net/attachments/978981832852910140/991600617510420480/unknown.png")
  await ctx.reply(embed=a, mention_author=False)
 
+@client.command()
+async def id(ctx,*, member: discord.Member=None):
+ if member == None:
+  await ctx.reply(f"الأيدي حقك: {ctx.author.id}", mention_autho=False)
+  return
+ await ctx.reply(f"الأيدي حق {member.name}: {member.id}**")
+
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
