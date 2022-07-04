@@ -147,8 +147,8 @@ async def gun(ctx, member: discord.Member=None):
 @client.command()
 @commands.guild_only()
 async def trans(ctx,*, txt):
- trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={txt}")
- await ctx.send(f"**{trans.json()['translated']}**")
+ trans=requests.get(f"https://translate-api.tk/translate?text={txt}&lang=ar")
+ await ctx.send(f"**{trans.json()['translated']['text']}**")
 
 @client.command()
 @commands.guild_only()
