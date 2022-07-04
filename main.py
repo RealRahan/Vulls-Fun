@@ -274,7 +274,7 @@ async def on_message(message):
     if message.guild.id not in messagecounts.keys():
         messagecounts[message.guild.id] = 0
     messagecounts[message.guild.id] += 1
-   await client.process_commands(message)
+    await client.process_commands(message)
 
 @client.command()
 @commands.guild_only()
