@@ -282,6 +282,6 @@ async def messages(ctx):
  m=await ctx.send(f"**{messagecounts[ctx.guild.id]} رسالة انرسلت من بعد تشغيل البوت**")
  while True:
   time.sleep(1)
-  await m.edit(f"**{messagecounts[ctx.guild.id]} رسالة انرسلت من بعد تشغيل البوت**")
+  await m.edit(content=f"**{messagecounts[ctx.guild.id]} رسالة انرسلت من بعد تشغيل البوت**")
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
