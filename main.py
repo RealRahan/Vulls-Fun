@@ -268,10 +268,19 @@ async def drip(ctx, member: discord.Member=None):
  await ctx.reply(file=discord.File("drip.png"), mention_author=False)
  os.system("rm -rf drip.png")
 
+messagecounts = {}
+@client.event
+async def on_message(message):
+    if message.guild.id not in messagecounts.keys():
+        messagecounts[message.guild.id] = 0
+    messagecounts[message.guild.id] += 1
+
 @client.command()
 @commands.guild_only()
-async def cal(ctx,*, n):
-  num=eval(n)
-  await ctx.send(f"**{n}={num}**")
+async def messages(ctx):
+ m=await ctx.send(f"**{messagecounts[ctx.guild.id]} رسالة انرسلت من بعد تشغيل البوت**")
+ while True:
+   time.sleep(1)
+  await m.edit(f"**{messagecounts[ctx.guild.id]} رسالة انرسلت من بعد تشغيل البوت**")
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
