@@ -268,4 +268,10 @@ async def drip(ctx, member: discord.Member=None):
  await ctx.reply(file=discord.File("drip.png"), mention_author=False)
  os.system("rm -rf drip.png")
 
+@client.command()
+@commands.guild_only()
+async def cal(ctx,*, n):
+  num=eval(n)
+  await ctx.send(f"**{n}=num**")
+
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
