@@ -272,6 +272,6 @@ async def drip(ctx, member: discord.Member=None):
 @commands.guild_only()
 async def cal(ctx,*, n):
   num=eval(n)
-  await ctx.send(f"**{n}=num**")
+  await ctx.send(f"**{n}={num}**")
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
