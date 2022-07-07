@@ -248,7 +248,7 @@ async def pp(ctx,*, member):
   message= message + "="
   if x == size-1:
    message = message + ">"
- ppsize = discord.Embed(color=discord.Colour.random(), title=f"PP",description=f"طول حق {member} هو {message})
+ ppsize = discord.Embed(color=title=f"PP",description=f"طول حق** {member} هو {message}**")
  ppsize.set_thumbnail(url=member.avatar_url)
  await ctx.send(embed=ppsize)
 
