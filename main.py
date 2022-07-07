@@ -241,8 +241,8 @@ async def drip(ctx, member: discord.Member=None):
 @commands.guild_only()
 async def pp(ctx,*, member=None):
  if member == None:
-  member=ctx.author
- size=random.randint(1,20)
+  member=ctx.author.name
+ size=random.randint(1,50)
  message = "|"
  for x in range (size):
   message= message + "="
