@@ -239,9 +239,9 @@ async def drip(ctx, member: discord.Member=None):
 
 @client.command()
 @commands.guild_only()
-async def pp(ctx,*, member):
+async def pp(ctx,*, member=None):
  if member == None:
-  return
+  member=ctx.author
  size=random.randint(1,20)
  message = "|"
  for x in range (size):
@@ -249,7 +249,6 @@ async def pp(ctx,*, member):
   if x == size-1:
    message = message + ">"
  ppsize = discord.Embed(title=f"PP",description=f"طول حق** {member} هو {message}**")
- ppsize.set_thumbnail(url=member.avatar_url)
  await ctx.send(embed=ppsize)
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
