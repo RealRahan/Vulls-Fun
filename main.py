@@ -48,7 +48,7 @@ async def help(ctx):
 {prefix}gay `الوان مشكوكة على صورة الشخص`
 {prefix}hgay `نسبة الشيء ذاك`
 {prefix}drip `بزنس مان`
-{prefix}img `بحث صور`
+{prefix}pp <:theshoe:980840570815655946>
 **""", color=discord.Color.random())
  fun.set_thumbnail(url=ctx.author.avatar_url)
  await ctx.send(embed=fun)
@@ -240,6 +240,8 @@ async def drip(ctx, member: discord.Member=None):
 @client.command()
 @commands.guild_only()
 async def pp(ctx, member):
+  if member == None:
+   return
   size=random.randint(1,20)
   message = "|"
   for x in range (size):
