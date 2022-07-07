@@ -153,40 +153,6 @@ async def trans(ctx,*, txt):
 
 @client.command()
 @commands.guild_only()
-@commands.has_permissions(manage_messages=True)
-async def verify(ctx, user: discord.Member=None):
- if ctx.channel.id == 987012780102123540:
-  if user == None:
-   await ctx.send(f"**{prefix}verify @{ctx.author.name}**")
-   return
-  await user.add_roles(discord.utils.get(user.guild.roles, name="عبدو"))
-  await user.remove_roles(discord.utils.get(user.guild.roles, name="Non-verified"))
-  verify=discord.Embed(description=f"**تم توثيق {user.name} ✅**", color=discord.Color.green())
-  await ctx.send(embed=verify)
- else:
-  return
-
-@client.command()
-@commands.guild_only()
-async def ques(ctx):
- if ctx.channel.id == 987012780102123540:
-  await ctx.channel.trigger_typing()
-  await ctx.send("""**
-1-كم عمرك
-
-2-من فين عرفت السيرفر
-
-3-هل بتتحمل الترولز اللي هنا
-
-4-بتكون عاقل وتلتزم بالقوانين
-
-5-هل انت من داعمين الشواذ
-**""")
- else:
-  return
-
-@client.command()
-@commands.guild_only()
 async def gay(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
@@ -229,7 +195,7 @@ async def soviet(ctx, member: discord.Member=None):
  if member==None:
   member=ctx.author
  soviet=discord.Embed(title="**Soviet Union**", description=f"**{member.name} سوفيتي بنسبة {random.randint(-1, 100)}%**", color=ctx.author.color)
- soviet.set_thumbnail(url="https://www.gizmodo.com.au/wp-content/uploads/sites/2/2017/05/30/mywfcnfhna0mnlpckifd.gif")
+ soviet.set_thumbnail(url="https://thumbs.gfycat.com/EarlyScholarlyHydatidtapeworm-size_restricted.gif")
  await ctx.reply(embed=soviet, mention_author=False)
 
 def restart_bot(): 
