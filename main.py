@@ -242,7 +242,7 @@ async def drip(ctx, member: discord.Member=None):
 async def pp(ctx,*, member=None):
  if member == None:
   member=ctx.author.name
- size=random.randint(1,50)
+ size=random.randint(0, 10)
  message = "|"
  for x in range (size):
   message= message + "="
