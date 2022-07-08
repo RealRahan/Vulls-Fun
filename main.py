@@ -237,18 +237,4 @@ async def drip(ctx, member: discord.Member=None):
 
 #https://normal-api.tk/image-search?query={q}
 
-@client.command()
-@commands.guild_only()
-async def pp(ctx,*, member=None):
- if member == None:
-  member=ctx.author.name
- size=random.randint(0, 15)
- message = "="
- for x in range (size):
-  message= message + "•"
-  if x == size-1:
-   message = message + ">"
- ppsize = discord.Embed(title=f"PP",description=f"طول حق** {member} هو {message}**")
- await ctx.send(embed=ppsize)
-
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
