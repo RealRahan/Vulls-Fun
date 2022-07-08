@@ -176,7 +176,7 @@ async def pet(ctx, member: discord.Member=None):
 async def nazi(ctx, member: discord.Member=None):
  if member==None:
   member=ctx.author
- nazi=discord.Embed(title="**Nazi Rate**", description=f"**{member.name} نازي بنسبة {random.randint(-10, 100)}%**", color=ctx.author.color)
+ nazi=discord.Embed(title="**Nazi Germany**", description=f"**{member.name} نازي بنسبة {random.randint(-10, 100)}%**", color=ctx.author.color)
  nazi.set_thumbnail(url="https://www.gifcen.com/wp-content/uploads/2021/04/hitler-gif-1.gif")
  await ctx.reply(embed=nazi, mention_author=False)
 
@@ -195,7 +195,7 @@ async def soviet(ctx, member: discord.Member=None):
  if member==None:
   member=ctx.author
  soviet=discord.Embed(title="**Soviet Union**", description=f"**{member.name} سوفيتي بنسبة {random.randint(-1, 100)}%**", color=ctx.author.color)
- soviet.set_thumbnail(url="https://thumbs.gfycat.com/EarlyScholarlyHydatidtapeworm-size_restricted.gif")
+ soviet.set_thumbnail(url="https://c.tenor.com/WJ1VMm3FtBMAAAAC/stalin-joseph-stalin.gif")
  await ctx.reply(embed=soviet, mention_author=False)
 
 def restart_bot(): 
