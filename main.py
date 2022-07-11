@@ -251,4 +251,15 @@ async def verify(ctx, user: discord.Member=None):
  else:
   return
 
+@client.event
+async def on_member_join(member):
+   if welcome_channel := member.guild.get_channel(881620025948135436):
+      new_invites = await member.guild.invites()
+      for i in range(len(new_invites)):
+         if new_invites[i].uses != old_invites[i].uses:
+            inviter = new_invites[i].inviter
+            uses = new_invites[i].uses
+      await welcome_channel.send(f"**{member.name} دخل للسيرفر بدعوة من {inviter} ،  عدد دعواتة حاليا {uses}**")
+      old_invites = new_invites
+
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
