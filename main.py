@@ -94,6 +94,10 @@ async def say(ctx,*, arg=None):
 @client.command()
 @commands.guild_only()
 async def love(ctx, name1=None,*, name2=None):
+  if name1 == None:
+   name1="انت"
+  if name2 == None:
+   await ctx.send("**يرجى وضع اسم واحد على الاقل**")
  love=discord.Embed(description=f"**نسبة الحب بين {name1} و {name2} هي {random.randint(-1, 100)}%**", color=ctx.author.color)
  love.set_thumbnail(url=ctx.guild.icon_url)
  await ctx.send(embed=love)
