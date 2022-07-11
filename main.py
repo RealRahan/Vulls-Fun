@@ -253,7 +253,7 @@ async def verify(ctx, user: discord.Member=None):
 
 @client.event
 async def on_member_join(member):
-   if welcome_channel := member.guild.get_channel(996093575139971152):
+   if welcome_channel := member.guild.get_channel(996093587236339712):
       new_invites = await member.guild.invites()
       for i in range(len(new_invites)):
          if new_invites[i].uses != old_invites[i].uses:
