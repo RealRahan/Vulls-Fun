@@ -251,6 +251,15 @@ async def verify(ctx, user: discord.Member=None):
  else:
   return
 
-
+@client.command()
+@commands.guild_only()
+async def invites(ctx,*, user: discord.Member=None):
+  if user == None:
+   user=ctx.author
+  total = 0
+  for i in await ctx.guild.invites():
+   if i.inviter == ctx.author:
+    total += i.uses
+   await ctx.send(f"**{user.name} داعي {total} عضو**")
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
