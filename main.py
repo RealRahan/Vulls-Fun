@@ -236,5 +236,18 @@ async def drip(ctx, member: discord.Member=None):
  os.system("rm -rf drip.png")
 
 #https://normal-api.tk/image-search?query={q}
+@client.command()
+@commands.guild_only()
+@commands.has_permissions(manage_messages=True)
+async def verify(ctx, user: discord.Member=None):
+ if ctx.channel.id == 987012780102123540:
+  if user == None:
+   await ctx.send(f"**{prefix}verify @{ctx.author.name}**")
+   return
+  await user.add_roles(discord.utils.get(user.guild.roles, name="عبدو"))
+  await user.remove_roles(discord.utils.get(user.guild.roles, name="Non-verified"))
+  await ctx.message.add_reaction("✅")
+ else:
+  return
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
