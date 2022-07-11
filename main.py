@@ -244,9 +244,10 @@ async def verify(ctx, user: discord.Member=None):
   if user == None:
    await ctx.send(f"**{prefix}verify @{ctx.author.name}**")
    return
+  m=await ctx.send("**جارِ توثيق {member.name}**")
   await user.add_roles(discord.utils.get(user.guild.roles, name="عبدو"))
   await user.remove_roles(discord.utils.get(user.guild.roles, name="Unverified"))
-  await ctx.message.add_reaction("✅")
+  await ctx.send("**تم توثيق {member.name} ✅**")
  else:
   return
 
