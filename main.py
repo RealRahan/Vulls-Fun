@@ -240,7 +240,7 @@ async def drip(ctx, member: discord.Member=None):
 @commands.guild_only()
 @commands.has_permissions(manage_messages=True)
 async def verify(ctx, user: discord.Member=None):
- if ctx.channel.id == 987012780102123540:
+ if ctx.channel.id == 995832723283390474:
   if user == None:
    await ctx.send(f"**{prefix}verify @{ctx.author.name}**")
    return
