@@ -6,7 +6,7 @@ import os
 import requests
 import time
 import sys
-stopped
+
 prefix="."
 intents = discord.Intents().all()
 client=commands.Bot(command_prefix=prefix, intents=intents)
@@ -48,7 +48,7 @@ async def help(ctx):
 {prefix}gay `الوان مشكوكة على صورة الشخص`
 {prefix}hgay `نسبة الشيء ذاك`
 {prefix}drip `بزنس مان`
-{prefix}
+{prefix}isis `انت داعشي ولا كيف؟`
 **""", color=discord.Color.random())
  fun.set_thumbnail(url=ctx.author.avatar_url)
  await ctx.send(embed=fun)
@@ -131,9 +131,9 @@ async def wanted(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
  avatar = member.avatar_url_as(static_format="png")
- os.system(f"wget -O wanted.png https://api.popcat.xyz/wanted?image={avatar}")
- await ctx.reply(file=discord.File("wanted.png"), mention_author=False)
- os.system("rm -rf wanted.png")
+ os.system(f"wget -O مطلوب.png https://api.popcat.xyz/wanted?image={avatar}")
+ await ctx.reply(file=discord.File("مطلوب.png"), mention_author=False)
+ os.system("rm -rf مطلوب.png")
 
 @client.command()
 @commands.guild_only()
@@ -244,11 +244,33 @@ async def verify(ctx, user: discord.Member=None):
   if user == None:
    await ctx.send(f"**{prefix}verify @{ctx.author.name}**")
    return
-  m=await ctx.send(f"**جارِ توثيق {user.name}**")
   await user.add_roles(discord.utils.get(user.guild.roles, name="عبدو"))
   await user.remove_roles(discord.utils.get(user.guild.roles, name="Unverified"))
-  await m.edit(content=f"**تم توثيق {user.name} ✅**")
+  await ctx.send("**تم توثيق {user.name} ✅**")
  else:
   return
+
+@client.command()
+@commands.guild_only()
+async def isis(ctx,*, member=None):
+ if member==None:
+  member="انت"
+ isis=discord.Embed(title="**ISIS**", description=f"**{member} داعشي بنسبة {random.randint(-10, 100)}%**", color=ctx.author.color)
+ isis.set_thumbnail(url="https://i.kym-cdn.com/photos/images/original/001/078/451/3c9.gif")
+ await ctx.reply(embed=isis, mention_author=False)
+
+@client.command()
+@commands.guild_only()
+async def rmember(ctx):
+  mems = []
+  ask=["قوله احبك", "حط صورة من هذا الشخص هو يعطيها لك", "قله ياميتي كودساي", "قله سي جي عمك", "تسوي اللي يبيه", "تقوله انا حامل منك", "قله اوني تشان", "ارسل له صورة فيمبوي", "قول له اه", "قله صرت شاذ", "قله صرت ملحد", "قول له انا فيمبوي وانت عجبتني", "قله تعال الساعة 3 بالليل"]
+  members = ctx.guild.members
+  for i in members:
+    if i.bot:
+      pass
+    else:
+      mems.append(i)
+  user = random.choice(mems)
+  await ctx.reply(f"**اخترت لك هذا العضو: {user}\nاللي لازم تسويه: {random.choice(ask)}\nلازم تسوي الشي هنا وتمنشن العضو قدام الكل**", mention_author=False)
 
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
