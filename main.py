@@ -278,7 +278,7 @@ async def rmember(ctx):
 @client.command()
 @commands.guild_only()
 async def magictxt(ctx,*, text="No text"):
- r=requests.get(f"https://normal-api.tk/emojify?text={text}").json()
- await ctx.reply(r[text], mention_author=False)
+ r=requests.get(f"https://normal-api.tk/emojify?text={txt}").json()
+ await ctx.reply(r[emojify], mention_author=False)
 
 client.run("OTg3NDA4MTIzMDU4ODYwMDYz.Gde-og.S1606IyP348-DxLg_swhScreDwYsbP53UDAoLk")
