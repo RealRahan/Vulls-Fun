@@ -155,9 +155,9 @@ async def gun(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
   if ctx.message.attachments:
-  avatar = member.avatar_url_as(static_format="png")
-  os.system(f"wget -O gun.png https://api.popcat.xyz/gun?image={ctx.message.attachments[0].url}")
-  await ctx.reply(file=discord.File("gun.png"), mention_author=False)
+   avatar = member.avatar_url_as(static_format="png")
+   os.system(f"wget -O gun.png https://api.popcat.xyz/gun?image={ctx.message.attachments[0].url}")
+   await ctx.reply(file=discord.File("gun.png"), mention_author=False)
  return
  os.system("rm -rf gun.png")
  avatar = member.avatar_url_as(static_format="png")
