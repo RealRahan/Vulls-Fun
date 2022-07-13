@@ -88,6 +88,7 @@ async def simpcard(ctx, member: discord.Member=None):
 async def say(ctx,*, arg=None):
  if arg == None:
   await ctx.send(f"**اكتب كلام\nمثال: {prefix}say أهلا جميعاً.**")
+  return
  await ctx.message.delete()
  await ctx.send(f"**{arg}**")
  
@@ -148,8 +149,8 @@ async def gun(ctx, member: discord.Member=None):
 @client.command()
 @commands.guild_only()
 async def trans(ctx,*, txt):
- trans=requests.get(f"https://translate-api.tk/translate?text={txt}&lang=ar")
- await ctx.send(f"**{trans.json()['translated']['text']}**")
+ trans=requests.get(f"https://translate-api.tk/translate?text={txt}&lang=ar").json()
+ await ctx.send(f"**{trans['translated']['text']}\n\nتمت الترجمة من اللغة: {trans['given']['lang']}**")
 
 @client.command()
 @commands.guild_only()
@@ -272,6 +273,5 @@ async def rmember(ctx):
       mems.append(i)
   user = random.choice(mems)
   await ctx.reply(f"**اخترت لك هذا العضو: {user}\nاللي لازم تسويه: {random.choice(ask)}\nلازم تسوي الشي هنا وتمنشن العضو قدام الكل**", mention_author=False)
-
 
 client.run("OTg3NDA4MTIzMDU4ODYwMDYz.Gde-og.S1606IyP348-DxLg_swhScreDwYsbP53UDAoLk")
