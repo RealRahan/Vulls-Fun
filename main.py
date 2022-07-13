@@ -259,4 +259,19 @@ async def isis(ctx,*, member=None):
  isis.set_thumbnail(url="https://i.kym-cdn.com/photos/images/original/001/078/451/3c9.gif")
  await ctx.reply(embed=isis, mention_author=False)
 
+@client.command()
+@commands.guild_only()
+async def rmember(ctx):
+  mems = []
+  ask=["قوله احبك", "حط صورة من هذا الشخص هو يعطيها لك", "قله ياميتي كودساي", "قله سي جي عمك", "تسوي اللي يبيه", "تقوله انا حامل منك", "قله اوني تشان", "ارسل له صورة فيمبوي", "قول له اه", "قله صرت شاذ", "قله صرت ملحد", "قول له انا فيمبوي وانت عجبتني", "قله تعال الساعة 3 بالليل", "قله بجيك من فوق السطوح"]
+  members = ctx.guild.members
+  for i in members:
+    if i.bot:
+      pass
+    else:
+      mems.append(i)
+  user = random.choice(mems)
+  await ctx.reply(f"**اخترت لك هذا العضو: {user}\nاللي لازم تسويه: {random.choice(ask)}\nلازم تسوي الشي هنا وتمنشن العضو قدام الكل**", mention_author=False)
+
+
 client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
