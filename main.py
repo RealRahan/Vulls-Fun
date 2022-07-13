@@ -274,4 +274,4 @@ async def rmember(ctx):
   await ctx.reply(f"**اخترت لك هذا العضو: {user}\nاللي لازم تسويه: {random.choice(ask)}\nلازم تسوي الشي هنا وتمنشن العضو قدام الكل**", mention_author=False)
 
 
-client.run("OTg5MDc1MTY1NjI5NTMwMTMz.GdNKA5.h570v2YUML9hcB19odruQDXOC8G6yYCWwef3tY")
+client.run("OTg3NDA4MTIzMDU4ODYwMDYz.Gde-og.S1606IyP348-DxLg_swhScreDwYsbP53UDAoLk")
