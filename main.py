@@ -211,7 +211,7 @@ async def reboot(ctx):
 @commands.guild_only()
 async def amoi(ctx, member: discord.Member=None):
  if member==None:
-  member=ctx.author
+  member="انت"
  a=discord.Embed(title="**الدَّوْلَةُ الأُمَوِيَّةُ**", description=f"**{member.name} أموي بنسبة {random.randint(-10, 100)}%**", color=ctx.author.color)
  a.set_thumbnail(url="https://j.gifs.com/KRe0Xk.gif")
  await ctx.reply(embed=a, mention_author=False)
