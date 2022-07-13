@@ -49,7 +49,7 @@ async def help(ctx):
 {prefix}hgay `نسبة الشيء ذاك`
 {prefix}drip `بزنس مان`
 {prefix}isis `انت داعشي ولا كيف؟`
-{prefix}magictxt `كلام مزخرف بطريقة جميله`
+{prefix}etxt `كلام مزخرف بطريقة جميله`
 **""", color=discord.Color.random())
  fun.set_thumbnail(url=ctx.author.avatar_url)
  await ctx.send(embed=fun)
@@ -277,8 +277,8 @@ async def rmember(ctx):
 
 @client.command()
 @commands.guild_only()
-async def magictxt(ctx,*, text="No text"):
- r=requests.get(f"https://normal-api.tk/emojify?text={txt}").json()
+async def etxt(ctx,*, text="No text"):
+ r=requests.get(f"https://normal-api.tk/emojify?text={text}").json()
  await ctx.reply(r[emojify], mention_author=False)
 
 client.run("OTg3NDA4MTIzMDU4ODYwMDYz.Gde-og.S1606IyP348-DxLg_swhScreDwYsbP53UDAoLk")
