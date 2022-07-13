@@ -49,6 +49,7 @@ async def help(ctx):
 {prefix}hgay `نسبة الشيء ذاك`
 {prefix}drip `بزنس مان`
 {prefix}isis `انت داعشي ولا كيف؟`
+{prefix}etxt `كلام مزخرف بطريقة جميله`
 **""", color=discord.Color.random())
  fun.set_thumbnail(url=ctx.author.avatar_url)
  await ctx.send(embed=fun)
@@ -114,6 +115,12 @@ async def respect(ctx, member: discord.Member=None):
 async def pixel(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
+ if ctx.message.attachments:
+  avatar = member.avatar_url_as(static_format="png")
+  os.system(f"wget -O pixel.png https://some-random-api.ml/canvas/pixelate/?avatar={ctx.message.attachments[0].url}")
+  await ctx.reply(file=discord.File(f"pixel.png"), mention_author=False)
+  os.system("rm -rf pixel.png")
+  return
  avatar = member.avatar_url_as(static_format="png")
  os.system(f"wget -O user_pixel.png https://some-random-api.ml/canvas/pixelate/?avatar={avatar}")
  await ctx.reply(file=discord.File(f"user_pixel.png"), mention_author=False)
@@ -131,6 +138,12 @@ async def fact(ctx):
 async def wanted(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
+ if ctx.message.attachments:
+  avatar = member.avatar_url_as(static_format="png")
+  os.system(f"wget -O مطلوب.png https://api.popcat.xyz/wanted?image={ctx.message.attachments[0].url}")
+  await ctx.reply(file=discord.File("مطلوب.png"), mention_author=False)
+  os.system("rm -rf مطلوب.png")
+  return
  avatar = member.avatar_url_as(static_format="png")
  os.system(f"wget -O مطلوب.png https://api.popcat.xyz/wanted?image={avatar}")
  await ctx.reply(file=discord.File("مطلوب.png"), mention_author=False)
@@ -141,6 +154,12 @@ async def wanted(ctx, member: discord.Member=None):
 async def gun(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
+  if ctx.message.attachments:
+  avatar = member.avatar_url_as(static_format="png")
+  os.system(f"wget -O gun.png https://api.popcat.xyz/gun?image={ctx.message.attachments[0].url}")
+  await ctx.reply(file=discord.File("gun.png"), mention_author=False)
+ return
+ os.system("rm -rf gun.png")
  avatar = member.avatar_url_as(static_format="png")
  os.system(f"wget -O gun.png https://api.popcat.xyz/gun?image={avatar}")
  await ctx.reply(file=discord.File("gun.png"), mention_author=False)
@@ -157,6 +176,12 @@ async def trans(ctx,*, txt):
 async def gay(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
+ if ctx.message.attachments:
+  avatar = member.avatar_url_as(static_format="png")
+  os.system(f"wget -O gay.png https://some-random-api.ml/canvas/gay/?avatar={ctx.message.attachments[0].url}")
+  await ctx.reply(file=discord.File("gay.png"), mention_author=False)
+  os.system("rm -rf gay.png")
+  return
  avatar = member.avatar_url_as(static_format="png")
  os.system(f"wget -O gay.png https://some-random-api.ml/canvas/gay/?avatar={avatar}")
  await ctx.reply(file=discord.File("gay.png"), mention_author=False)
@@ -218,15 +243,6 @@ async def amoi(ctx, member: discord.Member=None):
  await ctx.reply(embed=a, mention_author=False)
 
 @client.command()
-async def id(ctx,*, member: discord.Member=None):
- if member == None:
-  await ctx.reply(f"الأيدي حقك:", mention_author=False)
-  await ctx.send(ctx.author.id)
-  return
- await ctx.reply(f"الأيدي حق {member.name}:", mention_author=False)
- await ctx.send(member.id)
-
-@client.command()
 @commands.guild_only()
 async def drip(ctx, member: discord.Member=None):
  if member == None:
@@ -273,5 +289,11 @@ async def rmember(ctx):
       mems.append(i)
   user = random.choice(mems)
   await ctx.reply(f"**اخترت لك هذا العضو: {user}\nاللي لازم تسويه: {random.choice(ask)}\nلازم تسوي الشي هنا وتمنشن العضو قدام الكل**", mention_author=False)
+
+@client.command()
+@commands.guild_only()
+async def etxt(ctx,*, text="No text"):
+ r=requests.get(f"https://normal-api.tk/emojify?text={text}").json()
+ await ctx.reply(f"`{r['emojify']}`", mention_author=False)
 
 client.run("OTg3NDA4MTIzMDU4ODYwMDYz.Gde-og.S1606IyP348-DxLg_swhScreDwYsbP53UDAoLk")
