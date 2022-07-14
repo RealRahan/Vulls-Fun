@@ -6,6 +6,7 @@ import os
 import requests
 import time
 import sys
+import psutil, cpuinfo, platform
 
 prefix="."
 intents = discord.Intents().all()
@@ -14,9 +15,37 @@ client.remove_command("help")
 
 @client.event
 async def on_ready():
-	print(f"تم تشغيل بوت {client.user.name} بنجاح")
-	azkar.start()
-	await client.change_presence(activity=discord.Game(name="انا عم البوتات"))
+ print(f"تم تشغيل بوت {client.user.name} بنجاح")
+ await client.change_presence(activity=discord.Game(name="انا عم البوتات"))
+ azkar.start()
+ total_memory, used_memory, free_memory = map(
+    int, os.popen('free -m').readlines()[-1].split()[1:])
+ channel = client.get_channel(997116419772776520)
+ await channel.purge(limit=1)
+ info=discord.Embed(title=f"**معلومات نظام البوت**", description=f"""**
+النظام: {platform.platform()}
+المعالج: {cpuinfo.get_cpu_info()['brand_raw']}
+نواة المعالج: {psutil.cpu_count()}
+استخدام المعالج: {psutil.cpu_percent(8)}%
+إجمالي الرام: {total_memory} مب
+الرام المستخدم: {used_memory} مب
+الرام المتاح: {free_memory} مب
+**""")
+# info.set_thumbnail(url="")
+ msg=await channel.send(embed=info)
+ while True:
+  time.sleep(1)
+  info=discord.Embed(title=f"**معلومات نظام البوت**", description=f"""**
+النظام: {platform.platform()}
+المعالج: {cpuinfo.get_cpu_info()['brand_raw']}
+نواة المعالج: {psutil.cpu_count()}
+استخدام المعالج: {psutil.cpu_percent(8)}%
+إجمالي الرام: {total_memory} مب
+الرام المستخدم: {used_memory} مب
+الرام المتاح: {free_memory} مب
+**""")
+#  info.set_thumbnail(url="")
+  await msg.edit(embed=info)
 
 @tasks.loop(seconds = 900) # repeat after every 15 mins
 async def azkar():
@@ -300,13 +329,5 @@ async def rmember(ctx):
       mems.append(i)
   user = random.choice(mems)
   await ctx.reply(f"**اخترت لك هذا العضو: {user}\nاللي لازم تسويه: {random.choice(ask)}\nلازم تسوي الشي هنا وتمنشن العضو قدام الكل**", mention_author=False)
-
-@client.command()
-@commands.guild_only()
-@commands.has_permissions(manage_messages=True)
-async def تكلم(ctx,*, arg):
- channel = client.get_channel(978981832852910140)
- await channel.send(arg)
- await ctx.send("**تم الإرسال إلى <#978981832852910140>**")
 
 client.run("OTg3NDA4MTIzMDU4ODYwMDYz.Gde-og.S1606IyP348-DxLg_swhScreDwYsbP53UDAoLk")
