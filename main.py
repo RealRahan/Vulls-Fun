@@ -78,6 +78,12 @@ async def roll(ctx):
 async def simpcard(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
+ if ctx.message.attachments:
+  avatar = member.avatar_url_as(static_format="png")
+  os.system(f"wget -O simpcard.png https://some-random-api.ml/canvas/simpcard/?avatar={ctx.message.attachments[0].url}")
+  await ctx.reply(file=discord.File("simpcard.png"), mention_author=False)
+  os.system("rm -rf simpcard.png")
+  return
  avatar = member.avatar_url_as(static_format="png")
  os.system(f"wget -O simpcard.png https://some-random-api.ml/canvas/simpcard/?avatar={avatar}")
  await ctx.reply(file=discord.File("simpcard.png"), mention_author=False)
@@ -105,9 +111,15 @@ async def love(ctx, name1=None,*, name2=None):
 async def respect(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
+ if ctx.message.attachments:
+  avatar = member.avatar_url_as(static_format="png")
+  os.system(f"wget -O respect.png https://some-random-api.ml/canvas/passed/?avatar={ctx.message.attachments[0].url}")
+  await ctx.reply(file=discord.File("respect.png"), mention_author=False)
+  os.system("rm -rf respect.png")
+  return
  avatar = member.avatar_url_as(static_format="png")
  os.system(f"wget -O respect.png https://some-random-api.ml/canvas/passed/?avatar={avatar}")
- await ctx.reply(f"ريسبكت {member.name}", file=discord.File("respect.png"), mention_author=False)
+ await ctx.reply(file=discord.File("respect.png"), mention_author=False)
  os.system("rm -rf respect.png")
 
 @client.command()
@@ -140,14 +152,14 @@ async def wanted(ctx, member: discord.Member=None):
   member=ctx.author
  if ctx.message.attachments:
   avatar = member.avatar_url_as(static_format="png")
-  os.system(f"wget -O مطلوب.png https://api.popcat.xyz/wanted?image={ctx.message.attachments[0].url}")
-  await ctx.reply(file=discord.File("مطلوب.png"), mention_author=False)
-  os.system("rm -rf مطلوب.png")
+  os.system(f"wget -O wanted.png https://api.popcat.xyz/wanted?image={ctx.message.attachments[0].url}")
+  await ctx.reply(file=discord.File("wanted.png"), mention_author=False)
+  os.system("rm -rf wanted.png")
   return
  avatar = member.avatar_url_as(static_format="png")
- os.system(f"wget -O مطلوب.png https://api.popcat.xyz/wanted?image={avatar}")
- await ctx.reply(file=discord.File("مطلوب.png"), mention_author=False)
- os.system("rm -rf مطلوب.png")
+ os.system(f"wget -O wanted.png https://api.popcat.xyz/wanted?image={avatar}")
+ await ctx.reply(file=discord.File("wanted.png"), mention_author=False)
+ os.system("rm -rf wanted.png")
 
 @client.command()
 @commands.guild_only()
@@ -169,7 +181,7 @@ async def gun(ctx, member: discord.Member=None):
 @commands.guild_only()
 async def trans(ctx,*, txt):
  trans=requests.get(f"https://translate-api.tk/translate?text={txt}&lang=ar").json()
- await ctx.send(f"**{trans['translated']['text']}\n\nتمت الترجمة من اللغة: {trans['given']['lang']}**")
+ await ctx.send(f"**{trans['translated']['text']}**")
 
 @client.command()
 @commands.guild_only()
@@ -280,7 +292,7 @@ async def isis(ctx,*, member=None):
 @commands.guild_only()
 async def rmember(ctx):
   mems = []
-  ask=["قوله احبك", "حط صورة من هذا الشخص هو يعطيها لك", "قله ياميتي كودساي", "قله سي جي عمك", "تسوي اللي يبيه", "تقوله انا حامل منك", "قله اوني تشان", "ارسل له صورة فيمبوي", "قول له اه", "قله صرت شاذ", "قله صرت ملحد", "قول له انا فيمبوي وانت عجبتني", "قله تعال الساعة 3 بالليل", "قله بجيك من فوق السطوح"]
+  ask=["قوله احبك", "حط صورة من هذا الشخص هو يعطيها لك", "قله ياميتي كودساي", "قله سي جي عمك", "تسوي اللي يبيه", "تقوله انا حامل منك", "قله اوني تشان", "ارسل له صورة فيمبوي", "قله انا فيمبوي", "قله صرت شاذ", "قله صرت ملحد", "قول له انا فيمبوي وانت عجبتني", "قله تعال الساعة 3 بالليل", "قله بجيك من فوق السطوح", "قله: لو جاك ابو ماجد من فوق السطوح مفصخ ومعاه مسدس ايش تسوي؟"]
   members = ctx.guild.members
   for i in members:
     if i.bot:
@@ -289,11 +301,5 @@ async def rmember(ctx):
       mems.append(i)
   user = random.choice(mems)
   await ctx.reply(f"**اخترت لك هذا العضو: {user}\nاللي لازم تسويه: {random.choice(ask)}\nلازم تسوي الشي هنا وتمنشن العضو قدام الكل**", mention_author=False)
-
-@client.command()
-@commands.guild_only()
-async def etxt(ctx,*, text="No text"):
- r=requests.get(f"https://normal-api.tk/emojify?text={text}").json()
- await ctx.reply(f"`{r['emojify']}`", mention_author=False)
 
 client.run("OTg3NDA4MTIzMDU4ODYwMDYz.Gde-og.S1606IyP348-DxLg_swhScreDwYsbP53UDAoLk")
