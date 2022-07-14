@@ -6,6 +6,8 @@ import os
 import requests
 import time
 import sys
+from PIL import Image
+from io import BytesIO
 
 prefix="."
 intents = discord.Intents().all()
@@ -49,7 +51,6 @@ async def help(ctx):
 {prefix}hgay `نسبة الشيء ذاك`
 {prefix}drip `بزنس مان`
 {prefix}isis `انت داعشي ولا كيف؟`
-{prefix}etxt `كلام مزخرف بطريقة جميله`
 **""", color=discord.Color.random())
  fun.set_thumbnail(url=ctx.author.avatar_url)
  await ctx.send(embed=fun)
@@ -301,5 +302,13 @@ async def rmember(ctx):
       mems.append(i)
   user = random.choice(mems)
   await ctx.reply(f"**اخترت لك هذا العضو: {user}\nاللي لازم تسويه: {random.choice(ask)}\nلازم تسوي الشي هنا وتمنشن العضو قدام الكل**", mention_author=False)
+
+@client.command()
+@commands.guild_only()
+@commands.has_permissions(manage_messages=True)
+async def تكلم(ctx,*, arg):
+ channel = client.get_channel(978981832852910140)
+ await channel.send(arg)
+ await ctx.send("**تم الإرسال إلى <#978981832852910140>**")
 
 client.run("OTg3NDA4MTIzMDU4ODYwMDYz.Gde-og.S1606IyP348-DxLg_swhScreDwYsbP53UDAoLk")
