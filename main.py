@@ -6,8 +6,6 @@ import os
 import requests
 import time
 import sys
-from PIL import Image
-from io import BytesIO
 
 prefix="."
 intents = discord.Intents().all()
