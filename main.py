@@ -143,7 +143,7 @@ async def fact(ctx):
  r=requests.get("https://api.popcat.xyz/fact")
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r.json()['fact']}")
  fact=discord.Embed(title="**حقيقة**", description=f"**{trans.json()['translated']}**", color=discord.Color.random())
- fact.set_thumbnail(url=ctx.guild.avatar_url)
+ fact.set_thumbnail(url=ctx.guild.icon_url)
  await ctx.send(embed=fact)
 
 @client.command()
