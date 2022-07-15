@@ -6,7 +6,6 @@ import os
 import requests
 import time
 import sys
-import psutil, cpuinfo, platform
 
 prefix="."
 intents = discord.Intents().all()
@@ -18,34 +17,6 @@ async def on_ready():
  print(f"تم تشغيل بوت {client.user.name} بنجاح")
  await client.change_presence(activity=discord.Game(name="انا عم البوتات"))
  azkar.start()
- total_memory, used_memory, free_memory = map(
-    int, os.popen('free -m').readlines()[-1].split()[1:])
- channel = client.get_channel(997116419772776520)
- await channel.purge(limit=1)
- info=discord.Embed(title=f"**معلومات نظام البوت**", description=f"""**
-النظام: {platform.platform()}
-المعالج: {cpuinfo.get_cpu_info()['brand_raw']}
-نواة المعالج: {psutil.cpu_count()}
-استخدام المعالج: {psutil.cpu_percent(8)}%
-إجمالي الرام: {total_memory} مب
-الرام المستخدم: {used_memory} مب
-الرام المتاح: {free_memory} مب
-**""")
-# info.set_thumbnail(url="")
- msg=await channel.send(embed=info)
- while True:
-  time.sleep(1)
-  info=discord.Embed(title=f"**معلومات نظام البوت**", description=f"""**
-النظام: {platform.platform()}
-المعالج: {cpuinfo.get_cpu_info()['brand_raw']}
-نواة المعالج: {psutil.cpu_count()}
-استخدام المعالج: {psutil.cpu_percent(8)}%
-إجمالي الرام: {total_memory} مب
-الرام المستخدم: {used_memory} مب
-الرام المتاح: {free_memory} مب
-**""")
-#  info.set_thumbnail(url="")
-  await msg.edit(embed=info)
 
 @tasks.loop(seconds = 900) # repeat after every 15 mins
 async def azkar():
