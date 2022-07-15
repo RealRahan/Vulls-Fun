@@ -142,7 +142,8 @@ async def pixel(ctx, member: discord.Member=None):
 async def fact(ctx):
  r=requests.get("https://api.popcat.xyz/fact")
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r.json()['fact']}")
- await ctx.send(f"**{trans.json()['translated']}**")
+ fact=discord.Embed(title="**حقيقة**", description=f"**{trans.json()['translated']}**", color=discord.Color.random())
+ await ctx.send(embed=fact)
 
 @client.command()
 @commands.guild_only()
