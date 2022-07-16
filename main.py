@@ -214,6 +214,12 @@ async def gay(ctx, member: discord.Member=None):
 async def pet(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
+ if ctx.message.attachments:
+  avatar = member.avatar_url_as(static_format="png")
+  os.system(f"wget -O pet.gif https://api.popcat.xyz/pet?image={ctx.message.attachments[0].url}")
+  await ctx.reply(file=discord.File("pet.gif"), mention_author=False)
+  os.system("rm -rf pet.gif")
+  return
  avatar = member.avatar_url_as(static_format="png")
  os.system(f"wget -O pet.gif https://api.popcat.xyz/pet?image={avatar}")
  await ctx.reply(file=discord.File("pet.gif"), mention_author=False)
