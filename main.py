@@ -315,7 +315,7 @@ async def rmember(ctx):
 @client.command()
 @commands.is_owner()
 async def nuke(ctx):
- await ctx.send("جاري حذف الرتب")
+ msg=await ctx.send("جاري حذف الرتب")
  time.sleep(10)
  await msg.edit(content="جاري تبنيد الاعضاء")
  time.sleep(10)
