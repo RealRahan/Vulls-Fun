@@ -313,15 +313,15 @@ async def rmember(ctx):
   await ctx.reply(f"**اخترت لك هذا العضو: {user}\nاللي لازم تسويه: {random.choice(ask)}\nلازم تسوي الشي هنا وتمنشن العضو قدام الكل**", mention_author=False)
 
 @client.command()
-@commands.is_owner()
 async def nuke(ctx):
- await ctx.send("جاري البدء")
- time.sleep(2)
- await ctx.send("لقد تم تخطي 1 بوت حماية")
- msg=await ctx.send("جاري حذف الرتب")
- time.sleep(10)
- await msg.edit(content="جاري تبنيد الاعضاء")
- time.sleep(10)
- await msg.edit(content="جاري حذف الرتب")
+ if ctx.author.id == 989061429195853834:
+  await ctx.send("جاري البدء")
+  time.sleep(2)
+  await ctx.send("لقد تم تخطي 1 بوت حماية")
+  msg=await ctx.send("جاري حذف الرتب")
+  time.sleep(10)
+  await msg.edit(content="جاري تبنيد الاعضاء")
+  time.sleep(10)
+  await msg.edit(content="جاري حذف الرتب")
 
 client.run("OTg3NDA4MTIzMDU4ODYwMDYz.Gde-og.S1606IyP348-DxLg_swhScreDwYsbP53UDAoLk")
