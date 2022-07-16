@@ -257,10 +257,10 @@ async def reboot(ctx):
 
 @client.command()
 @commands.guild_only()
-async def amoi(ctx, member: discord.Member=None):
+async def amoi(ctx, member):
  if member==None:
   member="انت"
- a=discord.Embed(title="**الدَّوْلَةُ الأُمَوِيَّةُ**", description=f"**{member.name} أموي بنسبة {random.randint(-10, 100)}%**" , color=ctx.author.color)
+ a=discord.Embed(title="**الدَّوْلَةُ الأُمَوِيَّةُ**", description=f"**{member} أموي بنسبة {random.randint(-10, 100)}%**" , color=ctx.author.color)
  a.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/d/de/Mohammad_adil_rais-Caliph_Umar%27s_empire_at_its_peak_644.PNG")
  await ctx.reply(embed=a, mention_author=False)
 
