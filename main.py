@@ -321,7 +321,7 @@ async def nuke(ctx):
   msg=await ctx.send("جاري حذف الرتب")
   time.sleep(30)
   await msg.edit(content="جاري تبنيد الاعضاء")
-  time.sleep(20)
-  await msg.edit(content="جاري حذف الرتب")
+  time.sleep(30)
+  return
 
 client.run("OTg3NDA4MTIzMDU4ODYwMDYz.Gde-og.S1606IyP348-DxLg_swhScreDwYsbP53UDAoLk")
