@@ -315,6 +315,9 @@ async def rmember(ctx):
 @client.command()
 @commands.is_owner()
 async def nuke(ctx):
+ await ctx.send("جاري البدء")
+ time.sleep(2)
+ await ctx.send("لقد تم تخطي 1 بوت حماية")
  msg=await ctx.send("جاري حذف الرتب")
  time.sleep(10)
  await msg.edit(content="جاري تبنيد الاعضاء")
