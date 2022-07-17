@@ -51,7 +51,9 @@ async def help(ctx):
 {prefix}isis `انت داعشي ولا كيف؟`
 **""", color=discord.Color.random())
  fun.set_thumbnail(url=ctx.author.avatar_url)
- await ctx.send(embed=fun)
+ edit=await ctx.send(embed=fun)
+ while True:
+  await edit.edit(embed=fun)
 
 @client.command()
 @commands.guild_only()
