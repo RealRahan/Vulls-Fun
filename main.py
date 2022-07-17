@@ -181,10 +181,10 @@ async def gun(ctx, member: discord.Member=None):
 @client.command()
 @commands.guild_only()
 async def trans(ctx, lang=None,*, txt=None):
-  if lang == None:
-   await ctx.send(f"{prefix}trans **ar, en ru, other.** hello")
-  if txt == None:
-   await ctx.send(f"{prefix}trans ru **hello**")
+ if lang == None:
+  await ctx.send(f"{prefix}trans **ar, en ru, other.** hello")
+ if txt == None:
+  await ctx.send(f"{prefix}trans ru **hello**")
  trans=requests.get(f"https://translate-api.tk/translate?text={txt}&lang={lang}").json()
  await ctx.send(f"**{trans['translated']['text']}**")
 
