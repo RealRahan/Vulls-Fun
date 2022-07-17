@@ -180,17 +180,12 @@ async def gun(ctx, member: discord.Member=None):
 
 @client.command()
 @commands.guild_only()
-async def trans(ctx,*, txt):
- if "drex" in txt:
-  await ctx.send("**ماهذا القرف من هذا دريكس؟**")
-  return
- if "دريكس" in txt:
-  await ctx.send("**ماهذا القرف من هذا دريكس؟**")
-  return
- if "Drex" in txt:
-  await ctx.send("**ماهذا القرف من هذا دريكس؟**")
-  return
- trans=requests.get(f"https://translate-api.tk/translate?text={txt}&lang=ar").json()
+async def trans(ctx, lang,*, txt):
+  if not lang:
+   await ctx.send(f"{prefix}trans **ar, en ru, other.** hello")
+  if not text:
+   await ctx.send(f"{prefix}trans ru **hello**")
+ trans=requests.get(f"https://translate-api.tk/translate?text={txt}&lang={lang}").json()
  await ctx.send(f"**{trans['translated']['text']}**")
 
 @client.command()
