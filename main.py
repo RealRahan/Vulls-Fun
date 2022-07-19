@@ -309,10 +309,4 @@ async def rmember(ctx):
   user = random.choice(mems)
   await ctx.reply(f"**اخترت لك هذا العضو: {user}\nاللي لازم تسويه: {random.choice(ask)}\nلازم تسوي الشي هنا وتمنشن العضو قدام الكل**", mention_author=False)
 
-@client.command()
-@commands.guild_only()
-async def update(ctx, ver):
- await client.user.edit(nick=f"Vulls Fun {ver}")
- await ctx.send(f"**تم تغيير اسم الاصدار الى {ver}**")
-
 client.run("OTk4ODg4MDAwNDUwNzQwMjM0.GMDCnt.x1UtD0TgujMWL2e0n_tZ8kqjNFXsPbSpUWNWBE")
