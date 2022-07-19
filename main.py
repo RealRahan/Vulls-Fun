@@ -315,4 +315,4 @@ async def update(ctx, ver):
  await client.user.edit(nick=f"Vulls Fun {ver}")
  await ctx.send(f"**تم تغيير اسم الاصدار الى {ver}**")
 
-client.run("OTg3NDA4MTIzMDU4ODYwMDYz.Gde-og.S1606IyP348-DxLg_swhScreDwYsbP53UDAoLk")
+client.run("OTk4ODg4MDAwNDUwNzQwMjM0.GMDCnt.x1UtD0TgujMWL2e0n_tZ8kqjNFXsPbSpUWNWBE")
