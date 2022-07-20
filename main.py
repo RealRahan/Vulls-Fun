@@ -49,8 +49,7 @@ async def help(ctx):
 {prefix}gay `الوان مشكوكة على صورة الشخص`
 {prefix}hgay `نسبة الشيء ذاك`
 {prefix}drip `بزنس مان`
-{prefix}isis `نسبتك كـ داعشي`
-{prefix}rmbg `ازالة خلفية صورة عضو او صورة انت ترسلها لانتاج ميمز`
+{prefix}isis `انت داعشي ولا كيف؟`
 **""", color=discord.Color.random())
  fun.set_thumbnail(url=ctx.author.avatar_url)
  edit=await ctx.send(embed=fun)
@@ -320,7 +319,8 @@ async def rmbg(ctx, member: discord.Member=None):
  if ctx.message.attachments:
   avatar = member.avatar_url_as(static_format="png")
   os.system(f"wget -O image.png {ctx.message.attachments[0].url}")
-  await ctx.reply(file=discord.File("image.png"), mention_author=False)
+  rmbg.remove_background_from_img_file("image.png")
+  await ctx.reply(file=discord.File("image.png_no_bg.png"), mention_author=False)
   os.system("rm -rf image.png_no_bg.png")
   return
  avatar = member.avatar_url_as(static_format="png")
