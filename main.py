@@ -6,7 +6,6 @@ import os
 import requests
 import time
 import sys
-from removebg import RemoveBg
 
 prefix="."
 intents = discord.Intents().all()
@@ -49,7 +48,8 @@ async def help(ctx):
 {prefix}gay `الوان مشكوكة على صورة الشخص`
 {prefix}hgay `نسبة الشيء ذاك`
 {prefix}drip `بزنس مان`
-{prefix}isis `انت داعشي ولا كيف؟`
+{prefix}isis `امر يفضح الدواعش`
+{prefix}ussr `يحط لوقو السوفيت على صورة احد`
 **""", color=discord.Color.random())
  fun.set_thumbnail(url=ctx.author.avatar_url)
  edit=await ctx.send(embed=fun)
@@ -312,21 +312,18 @@ async def rmember(ctx):
 
 @client.command()
 @commands.guild_only()
-async def rmbg(ctx, member: discord.Member=None):
+async def ussr(ctx, member: discord.Member=None):
  if member == None:
   member=ctx.author
- rmbg = RemoveBg("e3hnzkw8NLMyxFoZCRdyoBBs", "error.log")
  if ctx.message.attachments:
   avatar = member.avatar_url_as(static_format="png")
-  os.system(f"wget -O image.png {ctx.message.attachments[0].url}")
-  rmbg.remove_background_from_img_file("image.png")
-  await ctx.reply(file=discord.File("image.png_no_bg.png"), mention_author=False)
-  os.system("rm -rf image.png_no_bg.png")
+  os.system(f"wget -O ussr.png https://api.popcat.xyz/communism?image={ctx.message.attachments[0].url}")
+  await ctx.reply(file=discord.File("ussr.png"), mention_author=False)
+  os.system("rm -rf ussr.png")
   return
  avatar = member.avatar_url_as(static_format="png")
- os.system(f"wget -O user.png {avatar}")
- rmbg.remove_background_from_img_file("user.png")
- await ctx.reply(file=discord.File("user.png_no_bg.png"), mention_author=False)
- os.system("rm -rf user.png_no_bg.png")
+ os.system(f"wget -O ussr.png https://api.popcat.xyz/communism?image={avatar}")
+ await ctx.reply(file=discord.File("ussr.png"), mention_author=False)
+ os.system("rm -rf ussr.png")
 
 client.run("OTk4ODg4MDAwNDUwNzQwMjM0.GMDCnt.x1UtD0TgujMWL2e0n_tZ8kqjNFXsPbSpUWNWBE")
