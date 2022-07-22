@@ -299,7 +299,7 @@ async def unverify(ctx, user: discord.Member=None,*, reason=None):
  await ctx.send(f"**تمت إزالة {user.name} من التوثيق✅**")
  channel = client.get_channel(988834703299739688)
  await channel.send(f"**للاسف تمت إزالتك من التوثيق {member.mention} :x:**")
- if reason not None:
+ if reason != None:
   await channel.send(f"**السبب: {reason}**")
   return
 
