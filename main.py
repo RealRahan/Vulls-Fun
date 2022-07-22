@@ -273,18 +273,34 @@ async def drip(ctx, member: discord.Member=None):
  os.system("rm -rf drip.png")
 
 #https://normal-api.tk/image-search?query={q}
-@client.command()
+@client.command(aliases=["ver"])
 @commands.guild_only()
 @commands.has_permissions(manage_messages=True)
 async def verify(ctx, user: discord.Member=None):
  if ctx.channel.id == 995832723283390474:
   if user == None:
-   await ctx.send(f"**{prefix}verify @{ctx.author.name}**")
+   await ctx.send(f"**{prefix}ver, verify @{ctx.author.name}**")
    return
   await user.add_roles(discord.utils.get(user.guild.roles, name="عبدو"))
   await user.remove_roles(discord.utils.get(user.guild.roles, name="Unverified"))
   await ctx.send(f"**تم توثيق {user.name} ✅**")
  else:
+  return
+
+@client.command(aliases=["unver"])
+@commands.guild_only()
+@commands.has_permissions(manage_messages=True)
+async def unverify(ctx, user: discord.Member=None,*, reason=None):
+ if user == None:
+   await ctx.send(f"**{prefix}unver, unverify @{ctx.author.name}**")
+   return
+ await user.add_roles(discord.utils.get(user.guild.roles, name="Unverified"))
+ await user.remove_roles(discord.utils.get(user.guild.roles, name="عبدو"))
+ await ctx.send(f"**تمت إزالة {user.name} من التوثيق✅**")
+ channel = client.get_channel(988834703299739688)
+ await channel.send(f"**للاسف تمت إزالتك من التوثيق {member.mention} :x:**")
+ if reason not None:
+  await channel.send(f"**السبب: {reason}**")
   return
 
 @client.command()
@@ -295,20 +311,6 @@ async def isis(ctx,*, member=None):
  isis=discord.Embed(title="**ISIS**", description=f"**{member} داعشي بنسبة {random.randint(-10, 100)}%**", color=ctx.author.color)
  isis.set_thumbnail(url="https://i.kym-cdn.com/photos/images/original/001/078/451/3c9.gif")
  await ctx.reply(embed=isis, mention_author=False)
-
-@client.command()
-@commands.guild_only()
-async def rmember(ctx):
-  mems = []
-  ask=["قوله احبك", "حط صورة من هذا الشخص هو يعطيها لك", "قله ياميتي كودساي", "قله سي جي عمك", "تسوي اللي يبيه", "تقوله انا حامل منك", "قله اوني تشان", "ارسل له صورة فيمبوي", "قله انا فيمبوي", "قله صرت شاذ", "قله صرت ملحد", "قول له انا فيمبوي وانت عجبتني", "قله تعال الساعة 3 بالليل", "قله بجيك من فوق السطوح", "قله: لو جاك ابو ماجد من فوق السطوح مفصخ ومعاه مسدس ايش تسوي؟"]
-  members = ctx.guild.members
-  for i in members:
-    if i.bot:
-      pass
-    else:
-      mems.append(i)
-  user = random.choice(mems)
-  await ctx.reply(f"**اخترت لك هذا العضو: {user}\nاللي لازم تسويه: {random.choice(ask)}\nلازم تسوي الشي هنا وتمنشن العضو قدام الكل**", mention_author=False)
 
 @client.command()
 @commands.guild_only()
