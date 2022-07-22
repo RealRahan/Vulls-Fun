@@ -16,16 +16,6 @@ client.remove_command("help")
 async def on_ready():
  print(f"تم تشغيل بوت {client.user.name} بنجاح")
  await client.change_presence(activity=discord.Game(name="إياس عم دريكس"))
- azkar.start()
-
-@tasks.loop(seconds = 900) # repeat after every 15 mins
-async def azkar():
- r=requests.get("https://azkar-api.nawafhq.repl.co/zekr?e&m&t&pd&qd&as&bs&wu&json").json()
- channel = client.get_channel(988834703299739688)
- a=discord.Embed(title=f"**{r['category']}**", description=f"**{r['content']}\n\n{r['description']}**")
- a.set_thumbnail(url="https://i1.sndcdn.com/artworks-000120023953-vbj8d5-t500x500.jpg")
- a.set_footer(text=r["reference"])
- await channel.send(embed=a)
  
 @client.command()
 @commands.guild_only()
@@ -296,7 +286,7 @@ async def unverify(ctx, user: discord.Member=None,*, reason=None):
    return
  await user.add_roles(discord.utils.get(user.guild.roles, name="Unverified"))
  await user.remove_roles(discord.utils.get(user.guild.roles, name="عبدو"))
- await ctx.send(f"**تمت إزالة {user.name} من التوثيق✅**")
+ await ctx.send(f"**تمت إزالة {user.name} من التوثيق ✅**")
  channel = client.get_channel(988834703299739688)
  await channel.send(f"**للاسف تمت إزالتك من التوثيق {member.mention} :x:**")
  if reason != None:
