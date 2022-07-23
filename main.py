@@ -16,7 +16,15 @@ client.remove_command("help")
 async def on_ready():
  print(f"تم تشغيل بوت {client.user.name} بنجاح")
  await client.change_presence(activity=discord.Game(name="إياس عم دريكس"))
- 
+
+@bot.listen('on_message')
+async def bost_stuf(message):
+    channel = discord.utils.get(message.guild.channels, id=979008775207940147)
+    if message.type == discord.MessageType.premium_guild_subscription:
+        bost = discord.Embed(description=f"**[{message.author.mention}] بوست جديد بواسطة**\n\n > ** \💙[ {message.author} ]  شكرا على البوست \💙**",color=0xf47fff)
+        bost.set_author(name='بوست جديد',icon_url='https://cdn.discordapp.com/attachments/866399886881980427/959803265485254666/booster.gif?size=4096')
+        await channel.send(embed=boost)
+
 @client.command()
 @commands.guild_only()
 async def help(ctx):
