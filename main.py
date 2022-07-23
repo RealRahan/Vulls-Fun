@@ -17,7 +17,7 @@ async def on_ready():
  print(f"تم تشغيل بوت {client.user.name} بنجاح")
  await client.change_presence(activity=discord.Game(name="إياس عم دريكس"))
 
-@bot.listen('on_message')
+@client.listen('on_message')
 async def bost_stuf(message):
     channel = discord.utils.get(message.guild.channels, id=979008775207940147)
     if message.type == discord.MessageType.premium_guild_subscription:
