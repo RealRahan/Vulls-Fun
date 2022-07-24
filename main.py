@@ -20,9 +20,11 @@ async def on_ready():
 @client.listen('on_message')
 async def bost_stuf(message):
     channel = discord.utils.get(message.guild.channels, id=979008775207940147)
+    footer=["https://c.tenor.com/lJFPnQNrMoEAAAAC/kfc-man.gif", "https://c.tenor.com/epNMHGvRyHcAAAAd/gigachad-chad.gif"]
     if message.type == discord.MessageType.premium_guild_subscription:
-        bost = discord.Embed(description=f"**[{message.author.mention}] بوست جديد بواسطة**\nعدد البوستات الان: {message.guild.premium_subscription_count}\n > ** \💙[ {message.author} ]  شكرا على البوست \💙**",color=0xf47fff)
+        bost = discord.Embed(description=f"**{message.author.mention} بوست جديد بواسطة الزنجي**\nعدد البوستات الان: {message.guild.premium_subscription_count}\n**<:creepyzenj:991237327227723806> [ {message.author.name} ]  شكرا على البوست <:creepyzenj:991237327227723806>**",color=0xf47fff)
         bost.set_author(name='بوست جديد',icon_url='https://cdn.discordapp.com/attachments/866399886881980427/959803265485254666/booster.gif?size=4096')
+        bost.set_footer(text=message.guild.name, icon_url=random.choice(footer))
         await channel.send(embed=bost)
 
 @client.command()
