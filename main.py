@@ -21,7 +21,7 @@ async def on_ready():
 async def bost_stuf(message):
     channel = discord.utils.get(message.guild.channels, id=979008775207940147)
     if message.type == discord.MessageType.premium_guild_subscription:
-        bost = discord.Embed(description=f"**[{message.author.mention}] بوست جديد بواسطة**\n\n > ** \💙[ {message.author} ]  شكرا على البوست \💙**",color=0xf47fff)
+        bost = discord.Embed(description=f"**[{message.author.mention}] بوست جديد بواسطة**\nعدد البوستات الان: {message.guild.premium_subscription_count}\n > ** \💙[ {message.author} ]  شكرا على البوست \💙**",color=0xf47fff)
         bost.set_author(name='بوست جديد',icon_url='https://cdn.discordapp.com/attachments/866399886881980427/959803265485254666/booster.gif?size=4096')
         await channel.send(embed=bost)
 
