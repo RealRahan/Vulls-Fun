@@ -329,6 +329,7 @@ async def ussr(ctx, member: discord.Member=None):
  os.system("rm -rf ussr.png")
 
 @client.command()
+@commands.has_permissions(manage_messages=True)
 async def تكلم(ctx,*, arg):
  channel = client.get_channel(998650359708909568)
  await channel.send(arg)
