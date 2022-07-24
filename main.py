@@ -328,4 +328,10 @@ async def ussr(ctx, member: discord.Member=None):
  await ctx.reply(file=discord.File("ussr.png"), mention_author=False)
  os.system("rm -rf ussr.png")
 
+@client.command()
+async def تكلم(ctx,*, arg):
+ channel = client.get_channel(998650359708909568)
+ await channel.send(arg)
+ await ctx.message.delete()
+
 client.run("OTk4ODg4MDAwNDUwNzQwMjM0.GMDCnt.x1UtD0TgujMWL2e0n_tZ8kqjNFXsPbSpUWNWBE")
