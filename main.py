@@ -6,6 +6,7 @@ import os
 import requests
 import time
 import sys
+import DiscordUtils
 
 prefix="."
 intents = discord.Intents().all()
@@ -30,29 +31,47 @@ async def bost_stuf(message):
 @client.command()
 @commands.guild_only()
 async def help(ctx):
- fun=discord.Embed(title=f"**الأوامر ({len(client.commands)})**", description=f"""**
+    embed1 = discord.Embed(title="**1/5**", description=f"""**
 {prefix}roll `نرد`
 {prefix}simpcard `تعطي شخص بطاقة سيمب`
 {prefix}love `نسبة الحب بين الطرفين`
 {prefix}respect `تعطي شخص نقاط احترام`
+**""", color=ctx.author.color)
+    embed1.set_thumbnail(url=ctx.guild.icon_url)
+    embed2 = discord.Embed(title="**2/5**", description=f"""**
 {prefix}pixel `صورة الشخص لكن بكسل`
 {prefix}trans `ترجمة الكلام`
 {prefix}fact `معلومات عن كل شيء`
 {prefix}wanted `تكون مطلوب`
-{prefix}gun `تحط مسدس بصورتك`
+**""", color=ctx.author.color)
+    embed2.set_thumbnail(url=ctx.guild.icon_url)
+    embed3 = discord.Embed(title="**3/5**", description=f"""**
 {prefix}chad `نسبة التشاد عند الشخص`
 {prefix}nazi `هل انت نازي او لا؟`
 {prefix}soviet `هل انت سوفيتي او نازي؟`
+{prefix}drip `بزنس مان`
+**""", color=ctx.author.color)
+    embed3.set_thumbnail(url=ctx.guild.icon_url)
+    embed4 = discord.Embed(title="**4/5**", description=f"""**
 {prefix}amoi `هل انت تدعم الحزب الأموي الأسلامي؟`
 {prefix}pet `جعوص`
 {prefix}gay `الوان مشكوكة على صورة الشخص`
 {prefix}hgay `نسبة الشيء ذاك`
-{prefix}drip `بزنس مان`
+**""", color=ctx.author.color)
+    embed4.set_thumbnail(url=ctx.guild.icon_url)
+    embed5 = discord.Embed(title="**5/5**", description=f"""**
 {prefix}isis `امر يفضح الدواعش`
 {prefix}ussr `يحط لوقو السوفيت على صورة احد`
-**""", color=discord.Color.random())
- fun.set_thumbnail(url=ctx.author.avatar_url)
- edit=await ctx.send(embed=fun)
+**""", color=ctx.author.color)
+    embed5.set_thumbnail(url=ctx.guild.icon_url)
+    paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx)
+    paginator.add_reaction('⏮️', "first")
+    paginator.add_reaction('⏪', "back")
+    paginator.add_reaction('🔐', "lock")
+    paginator.add_reaction('⏩', "next")
+    paginator.add_reaction('⏭️', "last")
+    embeds = [embed1, embed2, embed3, embed4, embed5]
+    await paginator.run(embeds)
 
 @client.command()
 @commands.guild_only()
@@ -101,10 +120,10 @@ async def say(ctx,*, arg=None):
  
 @client.command()
 @commands.guild_only()
-async def love(ctx, name1=None,*, name2=None):
+async def love(ctx, name1="خطأ",*, name2="خطأ"):
  love=discord.Embed(description=f"**نسبة الحب بين {name1} و {name2} هي {random.randint(-1, 100)}%**", color=ctx.author.color)
  love.set_thumbnail(url=ctx.guild.icon_url)
- await ctx.send(embed=love)
+ await ctx.reply(embed=love, mention_author=False)
 
 @client.command()
 @commands.guild_only()
@@ -142,10 +161,8 @@ async def pixel(ctx, member: discord.Member=None):
 @commands.guild_only()
 async def fact(ctx):
  r=requests.get("https://api.popcat.xyz/fact")
- trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r.json()['fact']}")
- fact=discord.Embed(title="**حقيقة**", description=f"**{trans.json()['translated']}**", color=discord.Color.random())
- fact.set_thumbnail(url=ctx.guild.icon_url)
- await ctx.send(embed=fact)
+ trans=requests.get(f"https://translate-api.tk/translate?text={r.json()['fact']}&lang=ar")
+ await ctx.send(f"```\nحقيقة\n{trans.json()['translated']['text']}\n```")
 
 @client.command()
 @commands.guild_only()
@@ -315,8 +332,10 @@ async def ussr(ctx, member: discord.Member=None):
 @client.command()
 @commands.has_permissions(manage_messages=True)
 async def تكلم(ctx,*, arg):
- channel = client.get_channel(998650359708909568)
+ channel = client.get_channel(1002303709285449748)
  await channel.send(arg)
  await ctx.message.delete()
+
+
 
 client.run("OTk4ODg4MDAwNDUwNzQwMjM0.GMDCnt.x1UtD0TgujMWL2e0n_tZ8kqjNFXsPbSpUWNWBE")
