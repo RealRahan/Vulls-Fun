@@ -161,8 +161,8 @@ async def pixel(ctx, member: discord.Member=None):
 @commands.guild_only()
 async def fact(ctx):
  r=requests.get("https://api.popcat.xyz/fact")
- trans=requests.get(f"https://translate-api.tk/translate?text={r.json()['fact']}&lang=ar")
- await ctx.send(f"```\nحقيقة\n{trans.json()['translated']['text']}\n```")
+ trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r.json()['fact']}")
+ await ctx.send(f"```\nحقيقة\n{trans.json()['translated']}\n```")
 
 @client.command()
 @commands.guild_only()
@@ -183,8 +183,8 @@ async def wanted(ctx, member: discord.Member=None):
 @client.command()
 @commands.guild_only()
 async def trans(ctx,*, txt):
- trans=requests.get(f"https://translate-api.tk/translate?text={txt}&lang=ar").json()
- await ctx.send(f"**{trans['translated']['text']}**")
+ trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={txt}").json()
+ await ctx.send(f"**{trans['translated']}**")
 
 @client.command()
 @commands.guild_only()
@@ -332,8 +332,22 @@ async def ussr(ctx, member: discord.Member=None):
 @client.command()
 @commands.has_permissions(manage_messages=True)
 async def تكلم(ctx,*, arg):
+ if ctx.message.attachments:
+  channel = client.get_channel(1002303709285449748)
+  os.system(f"wget -O image.png {ctx.message.attachments[0].url}")
+  await channel.send(arg, file=discord.File("image.png"))
+  await ctx.message.delete()
+  return
  channel = client.get_channel(1002303709285449748)
  await channel.send(arg)
  await ctx.message.delete()
+
+@client.command()
+@commands.guild_only()
+async def بوت(ctx,*, txt):
+ tr=requests.get(f"https://api.popcat.xyz/translate?to=en&text={txt}").json()
+ r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=راهان&botname=فولز فان").json()
+ trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
+ await ctx.reply(f"**{trans['translated']}**", mention_author=False)
 
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
