@@ -1,4 +1,4 @@
 discord
 requests
--e git://github.com/RealRahan/DiscordUtils
-DiscordUtils
+-e git://github.com/RealRahan/DiscordUtils#egg=DiscordUtils
+
