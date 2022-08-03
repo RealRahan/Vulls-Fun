@@ -351,10 +351,10 @@ async def بوت(ctx,*, txt):
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
  await ctx.reply(f"**{trans['translated']}**", mention_author=False)
 
-#@client.command()
-#@commands.guild_only()
-#async def unshort(ctx,*, url):
-# r=requests.get(f"https://unshorten.me/s/{url}").text
-# await ctx.reply(r, mention_author=False)
+@client.command()
+@commands.guild_only()
+async def unshort(ctx,*, url):
+ r=requests.get(f"https://unshorten.me/s/{url}").text
+ await ctx.reply(r, mention_author=False)
 
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
