@@ -346,9 +346,6 @@ async def تكلم(ctx,*, arg):
 @client.command()
 @commands.guild_only()
 async def بوت(ctx,*, txt):
- guild = ctx.guild
- voice_client: discord.VoiceClient = discord.utils.get(client.voice_clients, guild=guild)
- audio_source = discord.FFmpegPCMAudio('voice.mp3')
  tr=requests.get(f"https://api.popcat.xyz/translate?to=en&text={txt}").json()
  r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=راهان&botname=فولز فان").json()
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
