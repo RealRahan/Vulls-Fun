@@ -354,7 +354,7 @@ async def بوت(ctx,*, txt):
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
  os.system(f"edge-tts --voice ar-IQ-RanaNeural --text '{trans['translated']}' --write-media voice.mp3")
  await ctx.reply(f"**جاري التحدث في الروم الصوتي**", mention_author=False)
- if not voice_client.is_playing():
-  voice_client.play(audio_source, after=None)
+ voice = await ctx.author.voice.channel.connect()
+ voice.play(discord.FFmpegPCMAudio('voice.mp3'))
 
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
