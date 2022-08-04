@@ -347,11 +347,14 @@ async def تكلم(ctx,*, arg):
 @commands.guild_only()
 async def بوت(ctx,*, txt):
  tr=requests.get(f"https://api.popcat.xyz/translate?to=en&text={txt}").json()
- r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=isbs&botname=فولز فان").json()
+ r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=راهان&botname=فولز فان").json()
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
-# os.system(f"edge-tts --voice ar-IQ-RanaNeural --text '{trans['translated']}' --write-media voice.mp3")
- await ctx.reply(f"**{trans['translated']}**", mention_author=False)
-# await voice.play(discord.FFmpegPCMAudio('voice.mp3'))
-# await ctx.author.voice.channel.disconnect()
+ os.system(f"edge-tts --voice ar-IQ-RanaNeural --text '{trans['translated']}' --write-media voice.mp3")
+ await ctx.reply(f"**جاري دخول الروم الصوتي**", mention_author=False)
+ voice=await ctx.author.voice.channel.connect()
+ voice.play(discord.FFmpegPCMAudio('voice.mp3'))
+ while voice.is_playing():
+  time.sleep(1)
+ await voice.disconnect()
 
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
