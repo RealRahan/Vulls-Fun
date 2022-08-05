@@ -7,7 +7,7 @@ import requests
 import time
 import sys
 import DiscordUtils
-
+س
 prefix="."
 intents = discord.Intents().all()
 client=commands.Bot(command_prefix=prefix, intents=intents)
