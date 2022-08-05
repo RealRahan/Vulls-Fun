@@ -347,7 +347,7 @@ async def تكلم(ctx,*, arg):
 @commands.guild_only()
 async def بوت(ctx,*, txt):
  tr=requests.get(f"https://api.popcat.xyz/translate?to=en&text={txt}").json()
- r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=راهان&botname=فولز فان").json()
+ r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=isbs&botname=فولز فان").json()
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
  await ctx.reply(f"**{trans['translated']}**", mention_author=False)
 
