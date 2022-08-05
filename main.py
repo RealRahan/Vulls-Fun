@@ -350,7 +350,7 @@ async def بوت(ctx,*, txt):
  r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=راهان&botname=فولز فان").json()
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
  os.system(f"edge-tts --voice ar-IQ-RanaNeural --text '{trans['translated']}' --write-media voice.mp3")
- await ctx.reply(f"**جاري دخول الروم الصوتي**", mention_author=False)
+ await ctx.reply(f"**{trans['translated']}**", mention_author=False)
  voice=await ctx.author.voice.channel.connect()
  voice.play(discord.FFmpegPCMAudio('voice.mp3'))
  while voice.is_playing():
