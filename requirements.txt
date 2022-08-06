@@ -1,4 +1,3 @@
-discord[voice]
-PyNacl
+discord
 requests
 git+https://github.com/RealRahan/DiscordUtils#egg=DiscordUtils
