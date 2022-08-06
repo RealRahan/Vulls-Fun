@@ -2,4 +2,3 @@ discord[voice]
 PyNacl
 requests
 git+https://github.com/RealRahan/DiscordUtils#egg=DiscordUtils
-edge-tts
