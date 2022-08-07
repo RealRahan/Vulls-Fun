@@ -6,6 +6,7 @@ import os
 import requests
 import time
 import sys
+import datetime
 
 prefix="."
 intents = discord.Intents().all()
@@ -55,5 +56,11 @@ async def unverify(ctx, user: discord.Member=None,*, reason=None):
  if reason != None:
   await channel.send(f"**السبب: {reason}**")
   return
+
+@client.event
+async def on_member_join(member):
+ member.name = member.display_name
+ channel = client.get_channel(995832723283390474)
+ await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nدخل السيرفر بتاريخ: <t:{int(ctx.member.joined_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\n و انشئ بتاريخ: <t:{int(ctx.member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>**")
 
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
