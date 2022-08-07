@@ -10,7 +10,6 @@ import datetime
 
 prefix="."
 intents = discord.Intents().all()
-discord.member = True
 client=commands.Bot(command_prefix=prefix, intents=intents)
 client.remove_command("help")
 
@@ -60,7 +59,9 @@ async def unverify(ctx, user: discord.Member=None,*, reason=None):
 
 @client.event
 async def on_member_join(member):
+ member.name = member.display_name
  channel = client.get_channel(995832723283390474)
- await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nدخل السيرفر بتاريخ: <t:{int(member.joined_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\n و انشئ بتاريخ: <t:{int(member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>**")
+ await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nانشئ بتاريخ: <t:{int(ctx.member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\nإذا جاوب على الأسئلة وثقه بالأمر:**")
+ await channel.send(f"**{prefix}verify {member.id}")
 
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
