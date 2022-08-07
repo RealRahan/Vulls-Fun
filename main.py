@@ -10,6 +10,7 @@ import datetime
 
 prefix="."
 intents = discord.Intents().all()
+discord.member = True
 client=commands.Bot(command_prefix=prefix, intents=intents)
 client.remove_command("help")
 
