@@ -63,5 +63,6 @@ async def on_member_join(member):
  channel = client.get_channel(995832723283390474)
  await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nانشئ بتاريخ: <t:{int(ctx.member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\nإذا جاوب على الأسئلة وثقه بالأمر:**")
  await channel.send(f"**{prefix}verify {member.id}")
+ await client.process_commands(member)
 
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
