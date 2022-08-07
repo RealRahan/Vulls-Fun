@@ -59,7 +59,6 @@ async def unverify(ctx, user: discord.Member=None,*, reason=None):
 
 @client.event
 async def on_member_join(member):
- member.name = member.display_name
  channel = discord.utils.get(member.guild.text_channels, id="995832723283390474")
  await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nدخل السيرفر بتاريخ: <t:{int(member.joined_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\n و انشئ بتاريخ: <t:{int(member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>**")
 
