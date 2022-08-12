@@ -7,11 +7,13 @@ import requests
 import time
 import sys
 import datetime
+import DiscordUtils
 
 prefix="."
 intents = discord.Intents().all()
 intents.members = True
 client=commands.Bot(command_prefix=prefix, intents=intents)
+tracker = DiscordUtils.InviteTracker(client)
 client.remove_command("help")
 
 @client.event
@@ -61,7 +63,8 @@ async def unverify(ctx, user: discord.Member=None,*, reason=None):
 @client.event
 async def on_member_join(member):
  channel = client.get_channel(995832723283390474)
- await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nانشئ قبل: <t:{int(member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\nإذا جاوب على الأسئلة تقدر توثقه بالأمر:**")
+ inviter = await tracker.fetch_inviter(member)
+ await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nانشئ قبل: <t:{int(member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\nالداعي: {inviter}\nإذا جاوب على الأسئلة تقدر توثقه بالأمر:**")
  await channel.send(f"**{prefix}verify {member.id}**")
 
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
