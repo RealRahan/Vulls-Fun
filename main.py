@@ -67,7 +67,7 @@ async def on_member_join(member):
  if inviter == None:
   await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nانشئ قبل: <t:{int(member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\nالداعي: قام بإستخدام الرابط المخصص ل{member.guild.name}.\nإذا جاوب على الأسئلة تقدر توثقه بالأمر:**")
   await channel.send(f"**{prefix}verify {member.id}**")
- return
+  return
  else:
   await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nانشئ قبل: <t:{int(member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\nالداعي: {inviter}\nإذا جاوب على الأسئلة تقدر توثقه بالأمر:**")
  await channel.send(f"**{prefix}verify {member.id}**")
