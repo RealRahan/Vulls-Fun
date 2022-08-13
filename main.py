@@ -7,12 +7,13 @@ import requests
 import time
 import sys
 import datetime
+import DiscordUtils
 
 prefix="."
 intents = discord.Intents().all()
 intents.members = True
 client=commands.Bot(command_prefix=prefix, intents=intents)
-#tracker = DiscordUtils.InviteTracker(client)
+tracker = DiscordUtils.InviteTracker(client)
 client.remove_command("help")
 
 @client.event
