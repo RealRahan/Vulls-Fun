@@ -19,7 +19,7 @@ client.remove_command("help")
 @client.event
 async def on_ready():
  print(f"تم تشغيل بوت {client.user.name} بنجاح")
- await client.change_presence(activity=discord.Game(name="Bruh"))
+ await client.change_presence(status=discord.Status.offline)
 
 def restart_bot(): 
   os.execv(sys.executable, ['python3'] + sys.argv)
