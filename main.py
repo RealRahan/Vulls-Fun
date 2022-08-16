@@ -53,9 +53,9 @@ async def unverify(ctx, user: discord.Member=None,*, reason=None):
    return
  await user.add_roles(discord.utils.get(user.guild.roles, name="Unverified"))
  await user.remove_roles(discord.utils.get(user.guild.roles, name="عبدو"))
- await ctx.send(f"**تمت إزالة {user.name} من التوثيق ✅**")
+ await ctx.message.add_reaction("✅")
  channel = client.get_channel(995832723283390474)
- await channel.send(f"**للاسف تمت إزالتك من التوثيق {user.mention} :x:**")
+ await channel.send("**يامسكين {user.mention} شالوك من التوثيق**")
  if reason != None:
   await channel.send(f"**السبب: {reason}**")
   return
