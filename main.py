@@ -30,6 +30,10 @@ async def reboot(ctx):
   await ctx.send("**تمت إعادة التشغيل**")
   restart_bot()
 
+@client.command()
+async def ping(ctx):
+    await ctx.reply(f"**{round(client.latency * 1000)}MS**")
+
 @client.command(aliases=["ver"])
 @commands.guild_only()
 @commands.has_permissions(manage_messages=True)
