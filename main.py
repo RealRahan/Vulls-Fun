@@ -45,7 +45,7 @@ async def verify(ctx, user: discord.Member=None,*, r="مافي سبب"):
   await user.remove_roles(discord.utils.get(user.guild.roles, name="Unverified"))
   channel = client.get_channel(1007545972785676338)
   await channel.send("**توثيق ↓**")
-  txt=f"**لوق {user}\nتوثق من طرف: {ctx.author}\nسبب التوثيق: {r}**"
+  txt=f"**توثق من طرف: {ctx.author}\nسبب التوثيق: {r}**"
   embed=discord.Embed(title=f"**لوق {user}**", description=txt, color=discord.Color.random())
   embed.set_thumbnail(url=user.avatar_url)
   await channel.send(embed=embed)
