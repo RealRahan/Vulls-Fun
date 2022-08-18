@@ -53,7 +53,7 @@ async def verify(ctx, user: discord.Member=None,*, r="مافي سبب"):
 @client.command(aliases=["unver"])
 @commands.guild_only()
 @commands.has_permissions(manage_messages=True)
-async def unverify(ctx, user: discord.Member=None,*, reason=None):
+async def unverify(ctx, user: discord.Member=None,*, reason="مافي سبب"):
  if user == None:
    await ctx.send(f"**{prefix}unver, unverify @{ctx.author.name}**")
    return
