@@ -1,4 +1,4 @@
-discord.py
+discord
 requests
 git+https://github.com/RealRahan/DiscordUtils#egg=DiscordUtils
 datetime
