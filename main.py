@@ -36,13 +36,16 @@ async def ping(ctx):
 @client.command(aliases=["ver"])
 @commands.guild_only()
 @commands.has_permissions(manage_messages=True)
-async def verify(ctx, user: discord.Member=None):
+async def verify(ctx, user: discord.Member=None,*, r="مافي سبب"):
  if ctx.channel.id == 995832723283390474:
   if user == None:
    await ctx.send(f"**{prefix}ver, verify @{ctx.author.name}**")
    return
   await user.add_roles(discord.utils.get(user.guild.roles, name="عبدو"))
   await user.remove_roles(discord.utils.get(user.guild.roles, name="Unverified"))
+  channel = client.get_channel(1007545972785676338)
+  await channel.send("**توثيق ↓**")
+  await channel.send(f"**لوق {user}\nتوثق من طرف: {ctx.author}\nسبب التوثيق: {r}**")
   await ctx.send(f"**تم توثيق {user.name} ✅**")
  else:
   return
@@ -57,11 +60,9 @@ async def unverify(ctx, user: discord.Member=None,*, reason=None):
  await user.add_roles(discord.utils.get(user.guild.roles, name="Unverified"))
  await user.remove_roles(discord.utils.get(user.guild.roles, name="عبدو"))
  await ctx.message.add_reaction("✅")
- channel = client.get_channel(995832723283390474)
- await channel.send("**يامسكين {user.mention} شالوك من التوثيق**")
- if reason != None:
-  await channel.send(f"**السبب: {reason}**")
-  return
+ channel = client.get_channel(1007545972785676338)
+ await channel.send("**إزالة التوثيق ↓**")
+ await channel.send(f"**لوق {user}\nانشال من طرف: {ctx.author}\nالسبب: {reason}**")
 
 @client.event
 async def on_member_join(member):
