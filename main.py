@@ -45,7 +45,10 @@ async def verify(ctx, user: discord.Member=None,*, r="مافي سبب"):
   await user.remove_roles(discord.utils.get(user.guild.roles, name="Unverified"))
   channel = client.get_channel(1007545972785676338)
   await channel.send("**توثيق ↓**")
-  await channel.send(f"**لوق {user}\nتوثق من طرف: {ctx.author}\nسبب التوثيق: {r}**")
+  txt="**لوق {user}\nتوثق من طرف: {ctx.author}\nسبب التوثيق: {r}**"
+  embed=discord.Embed(title=f"**لوق {user}**", description=txt, color=discord.Color.random())
+  embed.set_thumbnail(url=user.avatar_url)
+  await channel.send(embed=embed)
   await ctx.send(f"**تم توثيق {user.name} ✅**")
  else:
   return
@@ -62,7 +65,10 @@ async def unverify(ctx, user: discord.Member=None,*, reason="مافي سبب"):
  await ctx.message.add_reaction("✅")
  channel = client.get_channel(1007545972785676338)
  await channel.send("**إزالة التوثيق ↓**")
- await channel.send(f"**لوق {user}\nانشال من طرف: {ctx.author}\nالسبب: {reason}**")
+ txt=f"**انشال من طرف: {ctx.author}\nالسبب: {reason}**"
+ embed=discord.Embed(title=f"**لوق {user}**", description=txt, color=discord.Color.random())
+ embed.set_thumbnail(url=user.avatar_url)
+ await channel.send(embed=embed)
 
 @client.event
 async def on_member_join(member):
