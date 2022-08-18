@@ -1,4 +1,4 @@
-discord==1.7.3
+discord.py
 requests
 git+https://github.com/RealRahan/DiscordUtils#egg=DiscordUtils
 datetime
