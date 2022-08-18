@@ -47,7 +47,7 @@ async def verify(ctx, user: discord.Member=None,*, r="مافي سبب"):
   await channel.send("**توثيق ↓**")
   txt=f"**توثق من طرف: {ctx.author}\nسبب التوثيق: {r}**"
   embed=discord.Embed(title=f"**لوق {user}**", description=txt, color=discord.Color.random())
-  embed.set_thumbnail(url=user.avatar_url)
+  embed.set_thumbnail(url=user.avatar)
   await channel.send(embed=embed)
   await ctx.send(f"**تم توثيق {user.name} ✅**")
  else:
@@ -67,7 +67,7 @@ async def unverify(ctx, user: discord.Member=None,*, reason="مافي سبب"):
  await channel.send("**إزالة التوثيق ↓**")
  txt=f"**انشال من طرف: {ctx.author}\nالسبب: {reason}**"
  embed=discord.Embed(title=f"**لوق {user}**", description=txt, color=discord.Color.random())
- embed.set_thumbnail(url=user.avatar_url)
+ embed.set_thumbnail(url=user.avatar)
  await channel.send(embed=embed)
 
 @client.event
