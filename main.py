@@ -8,6 +8,7 @@ import time
 import sys
 import datetime
 import DiscordUtils
+from seconds import Secs
 
 prefix="."
 intents = discord.Intents().all()
@@ -81,5 +82,21 @@ async def on_member_join(member):
  else:
   await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nانشئ قبل: <t:{int(member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\nالإنفايتر: {inviter}\nإذا جاوب على الأسئلة تقدر توثقه بالأمر:**")
  await channel.send(f"**{prefix}verify {member.id}**")
+
+@client.command()
+async def timer(ctx, n=None,*, r=None):
+ if n == None:
+  await ctx.send(f"**الإستخدام:\n{prefix}timer 5m/5h/5mo/5y**")
+ tosec=Secs(n)
+ number=int(tosec)
+ message = await ctx.send(f"**{number} متبقي**")
+ while number != 0:
+  number -= 1
+  await message.edit(content=f"**{number} متبقي**")
+  await asyncio.sleep(1)
+ await message.edit(content=f"**إنتهى عداد ال{number} ثانيه!**")
+ if r != None:
+  await ctx.send("ملاحظتك: {r}")
+ await ctx.send(ctx.author.mention)
 
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
