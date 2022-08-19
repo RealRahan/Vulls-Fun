@@ -96,7 +96,7 @@ async def timer(ctx, n=None,*, r=None):
   await asyncio.sleep(1)
  await message.edit(content=f"**إنتهى عداد ال{number} ثانيه!**")
  if r != None:
-  await ctx.send("ملاحظتك: {r}")
+  await ctx.send(f"ملاحظتك: {r}")
  await ctx.send(ctx.author.mention)
 
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
