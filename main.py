@@ -53,7 +53,7 @@ async def help(ctx):
     embed5 = discord.Embed(title="**5/5**", description=f"""**
 {prefix}isis `امر يفضح الدواعش`
 {prefix}ussr `يحط لوقو السوفيت على صورة احد`
-{prefix}shiite
+{prefix}shiite `نشوفك اذا شيعي`
 **""", color=ctx.author.color)
     embed5.set_thumbnail(url=ctx.guild.icon)
     paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx)
