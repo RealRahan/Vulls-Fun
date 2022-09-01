@@ -54,6 +54,7 @@ async def help(ctx):
 {prefix}isis `امر يفضح الدواعش`
 {prefix}ussr `يحط لوقو السوفيت على صورة احد`
 {prefix}shiite `نشوفك اذا شيعي`
+{prefix}sunni `او ممكن تقول انك شيعي وتطلع سني`
 **""", color=ctx.author.color)
     embed5.set_thumbnail(url=ctx.guild.icon)
     paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx)
@@ -112,7 +113,7 @@ async def say(ctx,*, arg=None):
  
 @client.command()
 @commands.guild_only()
-async def love(ctx, name1="خطأ",*, name2="خطأ"):
+async def love(ctx, name1, name2):
  love=discord.Embed(description=f"**نسبة الحب بين {name1} و {name2} هي {random.randint(-1, 100)}%**", color=ctx.author.color)
  love.set_thumbnail(url=ctx.guild.icon_url)
  await ctx.reply(embed=love, mention_author=False)
@@ -276,12 +277,21 @@ async def isis(ctx,*, member=None):
 
 @client.command()
 @commands.guild_only()
+async def sunni(ctx,*, member=None):
+ if member==None:
+  member="انت"
+ sunni=discord.Embed(title="**السنه**", description=f"**{member} سني بنسبة {random.randint(-1, 100)}%**", color=ctx.author.color)
+ sunni.set_thumbnail(url="https://i1.sndcdn.com/artworks-000063919527-3paj6m-t500x500.jpg")
+ await ctx.reply(embed=sunni, mention_author=False)
+
+@client.command()
+@commands.guild_only()
 async def shiite(ctx,*, member=None):
  if member==None:
   member="انت"
- isis=discord.Embed(title="**الشيعة**", description=f"**{member} شيعي بنسبة {random.randint(-1, 100)}%**", color=ctx.author.color)
- isis.set_thumbnail(url="https://c.tenor.com/dkxTibEsGZoAAAAS/%D9%84%D8%B7%D9%85-%D9%84%D8%B7%D9%85%D9%8A%D8%A9.gif")
- await ctx.reply(embed=isis, mention_author=False)
+ shia=discord.Embed(title="**الشيعة**", description=f"**{member} شيعي بنسبة {random.randint(-1, 100)}%**", color=ctx.author.color)
+ shia.set_thumbnail(url="https://c.tenor.com/dkxTibEsGZoAAAAS/%D9%84%D8%B7%D9%85-%D9%84%D8%B7%D9%85%D9%8A%D8%A9.gif")
+ await ctx.reply(embed=shia, mention_author=False)
 
 @client.command()
 @commands.guild_only()
