@@ -281,7 +281,7 @@ async def sunni(ctx,*, member=None):
  if member==None:
   member="انت"
  sunni=discord.Embed(title="**السنه**", description=f"**{member} سني بنسبة {random.randint(-1, 100)}%**", color=ctx.author.color)
- sunni.set_thumbnail(url="https://i1.sndcdn.com/artworks-000063919527-3paj6m-t500x500.jpg")
+ sunni.set_thumbnail(url="https://pbs.twimg.com/media/FLA8dhDXsAkK6FI?format=jpg&name=large")
  await ctx.reply(embed=sunni, mention_author=False)
 
 @client.command()
