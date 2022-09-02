@@ -20,7 +20,7 @@ async def on_ready():
  await client.change_presence(activity=discord.Game(name="What"))
 
 @client.command()
-@commands.guild_only()
+@comنmands.guild_only()
 async def help(ctx):
     embed1 = discord.Embed(title="**1/5**", description=f"""**
 {prefix}roll `نرد`
