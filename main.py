@@ -315,6 +315,6 @@ async def بوت(ctx,*, txt):
  tr=requests.get(f"https://api.popcat.xyz/translate?to=en&text={txt}").json()
  r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=سليم&botname=ترولر").json()
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
- await ctx.send(f"**{trans['translated']}**")
+ await ctx.reply(f"**{trans['translated']}**", mention_author=False)
 
 client.run("MTAwNjc0NTQ1Mzc4Nzg4NTYxOQ.GG6_rX.tj_jSCEAaIKYfKJGozfUVDmvSbP-EjR6pfsThM")
