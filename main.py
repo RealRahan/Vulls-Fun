@@ -309,55 +309,12 @@ async def ussr(ctx, member: discord.Member=None):
  await ctx.reply(file=discord.File("ussr.png"), mention_author=False)
  os.system("rm -rf ussr.png")
 
-@client.command(aliases=["ver"])
+@client.command()
 @commands.guild_only()
-@commands.has_permissions(manage_messages=True)
-async def verify(ctx, user: discord.Member=None,*, r="مافي سبب"):
- if ctx.channel.id == 995832723283390474:
-  if user == None:
-   await ctx.send(f"**{prefix}ver, verify @{ctx.author.name}**")
-   return
-  await user.add_roles(discord.utils.get(user.guild.roles, name="عبدو"))
-  await user.remove_roles(discord.utils.get(user.guild.roles, name="Unverified"))
-  channel = client.get_channel(1007545972785676338)
-  await channel.send("**توثيق ↓**")
-  txt=f"**توثق من طرف: {ctx.author}\nسبب التوثيق: {r}**"
-  embed=discord.Embed(title=f"**لوق {user}**", description=txt, color=discord.Color.random())
-  embed.set_thumbnail(url=user.avatar)
-  await channel.send(embed=embed)
-  await ctx.send(f"**تم توثيق {user.name} ✅**")
- else:
-  return
+async def بوت(ctx,*, txt):
+ tr=requests.get(f"https://api.popcat.xyz/translate?to=en&text={txt}").json()
+ r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=سليم&botname=ترولر").json()
+ trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
+ await ctx.send(f"**{trans['translated']}**")
 
-@client.command(aliases=["unver"])
-@commands.guild_only()
-@commands.has_permissions(manage_messages=True)
-async def unverify(ctx, user: discord.Member=None,*, reason="مافي سبب"):
- if user == None:
-   await ctx.send(f"**{prefix}unver, unverify @{ctx.author.name}**")
-   return
- await user.add_roles(discord.utils.get(user.guild.roles, name="Unverified"))
- await user.remove_roles(discord.utils.get(user.guild.roles, name="عبدو"))
- await ctx.message.add_reaction("✅")
- channel = client.get_channel(1007545972785676338)
- await channel.send("**إزالة التوثيق ↓**")
- txt=f"**انشال من طرف: {ctx.author}\nالسبب: {reason}**"
- embed=discord.Embed(title=f"**لوق {user}**", description=txt, color=discord.Color.random())
- embed.set_thumbnail(url=user.avatar)
- await channel.send(embed=embed)
-
-@client.event
-async def on_member_join(member):
- channel = client.get_channel(995832723283390474)
- inviter = await tracker.fetch_inviter(member)
- if inviter == None:
-  await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nانشئ قبل: <t:{int(member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\nالإنفايتر: مستخدم رابط مخصص ل{member.guild.name}.\nإذا جاوب على الأسئلة تقدر توثقه بالأمر:**")
-  await channel.send(f"**{prefix}verify {member.id}**")
-  return
- else:
-  await channel.send(f"**دخل عضو جديد\nإسمه: {member.name}\nانشئ قبل: <t:{int(member.created_at.replace(tzinfo=datetime.timezone.utc).timestamp())}:R>\nالإنفايتر: {inviter}\nإذا جاوب على الأسئلة تقدر توثقه بالأمر:**")
- await channel.send(f"**{prefix}verify {member.id}**")
-
-
-
-client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
+client.run("MTAwNjc0NTQ1Mzc4Nzg4NTYxOQ.GG6_rX.tj_jSCEAaIKYfKJGozfUVDmvSbP-EjR6pfsThM")
