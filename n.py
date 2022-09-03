@@ -19,13 +19,17 @@ async def on_ready():
  print(f"تم تشغيل بوت {client.user.name} بنجاح")
  await client.change_presence(activity=discord.Game(name="What"))
 
-@client.event
-async def on_message(m):
+@client.listen('on_message')
+async def sug(m):
  if m.channel.id == 1004159791574294528:
-   await m.content.delete()
+  if m.author == client.user:
+   return
+  await m.delete()
   e=discord.Embed(title=f"إقتراح بواسطة {m.author.name}", description=f"**{m.content}**", color=discord.Color.random())
   e.set_thumbnail(url=m.author.avatar)
-  await ctx.send(embed=e)
+  msg=await m.channel.send(embed=e)
+  await msg.add_reaction("👍")
+  await msg.add_reaction("👎")
 
 @client.command()
 @commands.guild_only()
