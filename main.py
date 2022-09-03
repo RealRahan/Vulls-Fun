@@ -20,7 +20,7 @@ async def on_ready():
  await client.change_presence(activity=discord.Game(name="What"))
 
 @client.command()
-@comنmands.guild_only()
+@commands.guild_only()
 async def help(ctx):
     embed1 = discord.Embed(title="**1/5**", description=f"""**
 {prefix}roll `نرد`
@@ -104,9 +104,11 @@ async def simpcard(ctx, member: discord.Member=None):
 @client.command()
 @commands.guild_only()
 @commands.has_permissions(manage_messages=True)
-async def say(ctx,*, arg=None):
- if arg == None:
-  await ctx.send(f"**اكتب كلام\nمثال: {prefix}say أهلا جميعاً.**")
+async def say(ctx,*, arg=""):
+ if ctx.message.attachments:
+  os.system(f"wget -O image.png {ctx.message.attachments[0].url}")
+  await ctx.reply(arg, file=discord.File("image.png"), mention_author=False)
+  os.system("rm -rf image.png")
   return
  await ctx.message.delete()
  await ctx.send(f"**{arg}**")
