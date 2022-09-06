@@ -311,4 +311,41 @@ async def ussr(ctx, member: discord.Member=None):
  await ctx.reply(file=discord.File("ussr.png"), mention_author=False)
  os.system("rm -rf ussr.png")
 
+@client.command(aliases=["ver"])
+@commands.guild_only()
+@commands.has_permissions(manage_messages=True)
+async def verify(ctx, user: discord.Member=None,*, r="مافي سبب"):
+ if ctx.channel.id == 995832723283390474:
+  if user == None:
+   await ctx.send(f"**{prefix}ver, verify @{ctx.author.name}**")
+   return
+  await user.add_roles(discord.utils.get(user.guild.roles, name="عبدو"))
+  await user.remove_roles(discord.utils.get(user.guild.roles, name="Unverified"))
+  channel = client.get_channel(1007545972785676338)
+  await channel.send("**توثيق ↓**")
+  txt=f"**توثق من طرف: {ctx.author}\nسبب التوثيق: {r}**"
+  embed=discord.Embed(title=f"**لوق {user}**", description=txt, color=discord.Color.random())
+  embed.set_thumbnail(url=user.avatar)
+  await channel.send(embed=embed)
+  await ctx.send(f"**تم توثيق {user.name} ✅**")
+ else:
+  return
+
+@client.command(aliases=["unver"])
+@commands.guild_only()
+@commands.has_permissions(manage_messages=True)
+async def unverify(ctx, user: discord.Member=None,*, reason="مافي سبب"):
+ if user == None:
+   await ctx.send(f"**{prefix}unver, unverify @{ctx.author.name}**")
+   return
+ await user.add_roles(discord.utils.get(user.guild.roles, name="Unverified"))
+ await user.remove_roles(discord.utils.get(user.guild.roles, name="عبدو"))
+ await ctx.message.add_reaction("✅")
+ channel = client.get_channel(1007545972785676338)
+ await channel.send("**إزالة التوثيق ↓**")
+ txt=f"**انشال من طرف: {ctx.author}\nالسبب: {reason}**"
+ embed=discord.Embed(title=f"**لوق {user}**", description=txt, color=discord.Color.random())
+ embed.set_thumbnail(url=user.avatar)
+ await channel.send(embed=embed)
+
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
