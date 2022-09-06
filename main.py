@@ -348,4 +348,12 @@ async def unverify(ctx, user: discord.Member=None,*, reason="مافي سبب"):
  embed.set_thumbnail(url=user.avatar)
  await channel.send(embed=embed)
 
+@client.command()
+@commands.guild_only()
+async def بوت(ctx,*, txt):
+ tr=requests.get(f"https://api.popcat.xyz/translate?to=en&text={txt}").json()
+ r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=فولز&botname=فولز أدمن").json()
+ trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
+ await ctx.reply(f"**{trans['translated']}**", mention_author=False)
+
 client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
