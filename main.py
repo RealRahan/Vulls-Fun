@@ -19,6 +19,19 @@ async def on_ready():
  print(f"تم تشغيل بوت {client.user.name} بنجاح")
  await client.change_presence(activity=discord.Game(name="What"))
 
+@client.listen('on_message')
+async def sug(m):
+ if m.channel.id == 1004159791574294528:
+  if m.author == client.user:
+   return
+  await m.delete()
+  e=discord.Embed(title=f"إقتراح بواسطة {m.author.name}", description=f"**{m.content}**", color=discord.Color.random())
+  e.set_thumbnail(url=m.author.avatar)
+  msg=await m.channel.send(embed=e)
+  await msg.add_reaction("👍")
+  await msg.add_reaction("👎")
+
+
 @client.command()
 @commands.guild_only()
 async def help(ctx):
@@ -352,8 +365,8 @@ async def unverify(ctx, user: discord.Member=None,*, reason="مافي سبب"):
 @commands.guild_only()
 async def بوت(ctx,*, txt):
  tr=requests.get(f"https://api.popcat.xyz/translate?to=en&text={txt}").json()
- r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=فولز&botname=فولز أدمن").json()
+ r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=سليم&botname=ترولر").json()
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
  await ctx.reply(f"**{trans['translated']}**", mention_author=False)
 
-client.run("MTAwMzUzMjE5NzQ1NTczMjc2Nw.GeYGxZ.oqX-CvEcALT9yin3x9bhAGIDvDA8f8xMQudQ54")
+client.run("MTAwNjc0NTQ1Mzc4Nzg4NTYxOQ.GG6_rX.tj_jSCEAaIKYfKJGozfUVDmvSbP-EjR6pfsThM")
