@@ -14,10 +14,20 @@ client=commands.Bot(command_prefix=prefix, intents=intents)
 tracker = DiscordUtils.InviteTracker(client)
 client.remove_command("help")
 
+@tasks.loop(seconds = 1200) # repeat after every 20 mins
+async def azkar():
+ r=requests.get("https://azkar-api.nawafhq.repl.co/zekr?e&m&t&pd&qd&as&bs&wu&json").json()
+ channel = client.get_channel(1004159797538603048)
+ a=discord.Embed(title=f"**{r['category']}**", description=f"**{r['content']}\n\n{r['description']}**")
+ a.set_thumbnail(url="https://i1.sndcdn.com/artworks-000120023953-vbj8d5-t500x500.jpg")
+ a.set_footer(text=r["reference"])
+ await channel.send(embed=a)
+
 @client.event
 async def on_ready():
  print(f"تم تشغيل بوت {client.user.name} بنجاح")
  await client.change_presence(activity=discord.Game(name="What"))
+ azkar.start()
 
 @client.listen('on_message')
 async def sug(m):
