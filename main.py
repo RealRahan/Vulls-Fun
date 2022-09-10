@@ -63,7 +63,7 @@ async def help(ctx):
 {prefix}chad `نسبة التشاد عند الشخص`
 {prefix}nazi `هل انت نازي او لا؟`
 {prefix}soviet `هل انت سوفيتي او نازي؟`
-{prefix}drip `بزنس مان`
+{prefix}libi `نسبة العظمة الليبيه اللي عندك`
 **""", color=ctx.author.color)
     embed3.set_thumbnail(url=ctx.guild.icon)
     embed4 = discord.Embed(title="**4/5**", description=f"""**
@@ -281,15 +281,6 @@ async def amoi(ctx, member=None):
  a.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/d/de/Mohammad_adil_rais-Caliph_Umar%27s_empire_at_its_peak_644.PNG")
  await ctx.reply(embed=a, mention_author=False)
 
-@client.command()
-@commands.guild_only()
-async def drip(ctx, member: discord.Member=None):
- if member == None:
-  member=ctx.author
- avatar = member.avatar_url_as(static_format="png")
- os.system(f"wget -O drip.png https://api.popcat.xyz/drip?image={avatar}")
- await ctx.reply(file=discord.File("drip.png"), mention_author=False)
- os.system("rm -rf drip.png")
 
 @client.command()
 @commands.guild_only()
