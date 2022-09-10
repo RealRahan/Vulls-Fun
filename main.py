@@ -281,6 +281,14 @@ async def amoi(ctx, member=None):
  a.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/d/de/Mohammad_adil_rais-Caliph_Umar%27s_empire_at_its_peak_644.PNG")
  await ctx.reply(embed=a, mention_author=False)
 
+@client.command()
+@commands.guild_only()
+async def libi(ctx,*, member=None):
+ if member==None:
+  member="انت"
+ isis=discord.Embed(title="**الليبي العظيم**", description=f"**{member} ليبي عظيم بنسبة {random.randint(-10, 100)}%**", color=ctx.author.color)
+ isis.set_thumbnail(url="https://media.discordapp.net/attachments/1004159793818247328/1017860673646104697/IMG_20220823_063932_491.jpg")
+ await ctx.reply(embed=isis, mention_author=False)
 
 @client.command()
 @commands.guild_only()
