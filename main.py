@@ -375,13 +375,7 @@ async def unverify(ctx, user: discord.Member=None,*, reason="مافي سبب"):
 async def بوت(ctx,*, txt):
  tr=requests.get(f"https://api.popcat.xyz/translate?to=en&text={txt}").json()
  r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=سليم&botname=ترولر").json()
- trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
- os.system(f"edge-tts --voice ar-IQ-RanaNeural --text '{trans['translated']}' --write-media voice.mp3")
+ trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json(
  await ctx.reply(f"**{trans['translated']}**", mention_author=False)
- voice=await ctx.author.voice.channel.connect()
- voice.play(discord.FFmpegPCMAudio('voice.mp3'))
- while voice.is_playing():
-  time.sleep(1)
- await voice.disconnect()
 
 client.run("MTAwNjc0NTQ1Mzc4Nzg4NTYxOQ.GG6_rX.tj_jSCEAaIKYfKJGozfUVDmvSbP-EjR6pfsThM")
