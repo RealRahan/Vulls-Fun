@@ -3,3 +3,4 @@ requests
 git+https://github.com/RealRahan/DiscordUtils#egg=DiscordUtils
 datetime
 edge-tts
+pynacl
