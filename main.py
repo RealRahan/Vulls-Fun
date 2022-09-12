@@ -10,7 +10,7 @@ import DiscordUtils
 
 prefix="."
 intents = discord.Intents().all()
-client=commands.Bot(command_prefix=prefix, intents=intents)
+client=commands.Bot(command_prefix=prefix, intents=intents, case_insensitive=True)
 tracker = DiscordUtils.InviteTracker(client)
 client.remove_command("help")
 
