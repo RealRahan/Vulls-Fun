@@ -19,7 +19,7 @@ async def azkar():
  r=requests.get("https://azkar-api.nawafhq.repl.co/zekr?e&m&t&pd&qd&as&bs&wu&json").json()
  channel = client.get_channel(1004159797538603048)
  a=discord.Embed(title=f"**{r['category']}**", description=f"**{r['content']}\n\n{r['description']}**")
- a.set_thumbnail(url="https://i1.sndcdn.com/artworks-000120023953-vbj8d5-t500x500.jpg")
+ a.set_thumbnail(url="https:https://dash.devlab.ae/public/uploads/site_14/1_5f7250ba05c4e_1601327290_1573947751.png")
  a.set_footer(text=r["reference"])
  await channel.send(embed=a)
 
