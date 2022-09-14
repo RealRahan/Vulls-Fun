@@ -378,7 +378,7 @@ async def بوت(ctx,*, txt):
  trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
  await ctx.reply(f"**{trans['translated']}**", mention_author=False)
 
-@cleint.command()
+@client.command()
 async def de(ctx):
     await ctx.message.delete()
     for Emoji in ctx.guild.emojis:
