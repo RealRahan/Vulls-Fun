@@ -19,9 +19,6 @@ client.remove_command("help")
 async def on_ready():
  print(f"تم تشغيل بوت {client.user.name} بنجاح")
  await client.change_presence(activity=discord.Game(name="What"))
- azkar.start()
-
-
 
 @client.command()
 @commands.guild_only()
