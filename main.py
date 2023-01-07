@@ -14,14 +14,6 @@ client=commands.Bot(command_prefix=prefix, intents=intents, case_insensitive=Tru
 tracker = DiscordUtils.InviteTracker(client)
 client.remove_command("help")
 
-@tasks.loop(seconds = 1200) # repeat after every 20 mins
-async def azkar():
- r=requests.get("https://azkar-api.nawafhq.repl.co/zekr?e&m&t&pd&qd&as&bs&wu&json").json()
- channel = client.get_channel(1004159797538603048)
- a=discord.Embed(title=f"**{r['category']}**", description=f"**{r['content']}\n\n{r['description']}**")
- a.set_thumbnail(url="https:https://dash.devlab.ae/public/uploads/site_14/1_5f7250ba05c4e_1601327290_1573947751.png")
- a.set_footer(text=r["reference"])
- await channel.send(embed=a)
 
 @client.event
 async def on_ready():
@@ -29,17 +21,6 @@ async def on_ready():
  await client.change_presence(activity=discord.Game(name="What"))
  azkar.start()
 
-@client.listen('on_message')
-async def sug(m):
- if m.channel.id == 1004159791574294528:
-  if m.author == client.user:
-   return
-  await m.delete()
-  e=discord.Embed(title=f"إقتراح بواسطة {m.author.name}", description=f"**{m.content}**", color=discord.Color.random())
-  e.set_thumbnail(url=m.author.avatar)
-  msg=await m.channel.send(embed=e)
-  await msg.add_reaction("👍")
-  await msg.add_reaction("👎")
 
 
 @client.command()
@@ -61,9 +42,6 @@ async def help(ctx):
     embed2.set_thumbnail(url=ctx.guild.icon)
     embed3 = discord.Embed(title="**3/5**", description=f"""**
 {prefix}chad `نسبة التشاد عند الشخص`
-{prefix}nazi `هل انت نازي او لا؟`
-{prefix}soviet `هل انت سوفيتي او نازي؟`
-{prefix}libi `نسبة العظمة الليبيه اللي عندك`
 **""", color=ctx.author.color)
     embed3.set_thumbnail(url=ctx.guild.icon)
     embed4 = discord.Embed(title="**4/5**", description=f"""**
@@ -74,10 +52,7 @@ async def help(ctx):
 **""", color=ctx.author.color)
     embed4.set_thumbnail(url=ctx.guild.icon)
     embed5 = discord.Embed(title="**5/5**", description=f"""**
-{prefix}isis `امر يفضح الدواعش`
-{prefix}ussr `يحط لوقو السوفيت على صورة احد`
-{prefix}shiite `نشوفك اذا شيعي`
-{prefix}sunni `او ممكن تقول انك شيعي وتطلع سني`
+{prefix}afk `وضع الخمول`
 **""", color=ctx.author.color)
     embed5.set_thumbnail(url=ctx.guild.icon)
     paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx)
@@ -236,14 +211,6 @@ async def pet(ctx, member: discord.Member=None):
  await ctx.reply(file=discord.File("pet.gif"), mention_author=False)
  os.system("rm -rf pet.gif")
  
-@client.command()
-@commands.guild_only()
-async def nazi(ctx, member: discord.Member=None):
- if member==None:
-  member=ctx.author
- nazi=discord.Embed(title="**Nazi Germany**", description=f"**{member.name} نازي بنسبة {random.randint(-10, 100)}%**", color=ctx.author.color)
- nazi.set_thumbnail(url="https://www.gifcen.com/wp-content/uploads/2021/04/hitler-gif-1.gif")
- await ctx.reply(embed=nazi, mention_author=False)
 
 @client.command()
 @commands.guild_only()
@@ -253,15 +220,6 @@ async def hgay(ctx, member: discord.Member=None):
  grate=discord.Embed(title="**grate**", description=f"**{member.name} :rainbow_flag: بنسبة {random.randint(-1, 100)}%**", color=ctx.author.color)
  grate.set_thumbnail(url="https://i.imgflip.com/6c3qh2.jpg")
  await ctx.reply(embed=grate, mention_author=False)
-
-@client.command()
-@commands.guild_only()
-async def soviet(ctx, member: discord.Member=None):
- if member==None:
-  member=ctx.author
- soviet=discord.Embed(title="**Soviet Union**", description=f"**{member.name} سوفيتي بنسبة {random.randint(-1, 100)}%**", color=ctx.author.color)
- soviet.set_thumbnail(url="https://c.tenor.com/WJ1VMm3FtBMAAAAC/stalin-joseph-stalin.gif")
- await ctx.reply(embed=soviet, mention_author=False)
 
 def restart_bot(): 
   os.execv(sys.executable, ['python3'] + sys.argv)
@@ -281,101 +239,5 @@ async def amoi(ctx, member=None):
  a.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/commons/d/de/Mohammad_adil_rais-Caliph_Umar%27s_empire_at_its_peak_644.PNG")
  await ctx.reply(embed=a, mention_author=False)
 
-@client.command()
-@commands.guild_only()
-async def libi(ctx,*, member=None):
- if member==None:
-  member="انت"
- isis=discord.Embed(title="**الليبي العظيم**", description=f"**{member} ليبي عظيم بنسبة {random.randint(-10, 100)}%**", color=ctx.author.color)
- isis.set_thumbnail(url="https://media.discordapp.net/attachments/1004159793818247328/1017860673646104697/IMG_20220823_063932_491.jpg")
- await ctx.reply(embed=isis, mention_author=False)
 
-@client.command()
-@commands.guild_only()
-async def isis(ctx,*, member=None):
- if member==None:
-  member="انت"
- isis=discord.Embed(title="**ISIS**", description=f"**{member} داعشي بنسبة {random.randint(-10, 100)}%**", color=ctx.author.color)
- isis.set_thumbnail(url="https://i.kym-cdn.com/photos/images/original/001/078/451/3c9.gif")
- await ctx.reply(embed=isis, mention_author=False)
-
-@client.command()
-@commands.guild_only()
-async def sunni(ctx,*, member=None):
- if member==None:
-  member="انت"
- sunni=discord.Embed(title="**السنه**", description=f"**{member} سني بنسبة {random.randint(-1, 100)}%**", color=ctx.author.color)
- sunni.set_thumbnail(url="https://pbs.twimg.com/media/FLA8dhDXsAkK6FI?format=jpg&name=large")
- await ctx.reply(embed=sunni, mention_author=False)
-
-@client.command()
-@commands.guild_only()
-async def shiite(ctx,*, member=None):
- if member==None:
-  member="انت"
- shia=discord.Embed(title="**الشيعة**", description=f"**{member} شيعي بنسبة {random.randint(-1, 100)}%**", color=ctx.author.color)
- shia.set_thumbnail(url="https://c.tenor.com/dkxTibEsGZoAAAAS/%D9%84%D8%B7%D9%85-%D9%84%D8%B7%D9%85%D9%8A%D8%A9.gif")
- await ctx.reply(embed=shia, mention_author=False)
-
-@client.command()
-@commands.guild_only()
-async def ussr(ctx, member: discord.Member=None):
- if member == None:
-  member=ctx.author
- if ctx.message.attachments:
-  avatar = member.avatar.replace(static_format="png")
-  os.system(f"wget -O ussr.png https://api.popcat.xyz/communism?image={ctx.message.attachments[0].url}")
-  await ctx.reply(file=discord.File("ussr.png"), mention_author=False)
-  os.system("rm -rf ussr.png")
-  return
- avatar = member.avatar.replace(static_format="png")
- os.system(f"wget -O ussr.png https://api.popcat.xyz/communism?image={avatar}")
- await ctx.reply(file=discord.File("ussr.png"), mention_author=False)
- os.system("rm -rf ussr.png")
-
-@client.command(aliases=["ver"])
-@commands.guild_only()
-@commands.has_permissions(manage_messages=True)
-async def verify(ctx, user: discord.Member=None,*, r="مافي سبب"):
- if ctx.channel.id == 995832723283390474:
-  if user == None:
-   await ctx.send(f"**{prefix}ver, verify @{ctx.author.name}**")
-   return
-  await user.add_roles(discord.utils.get(user.guild.roles, name="عبدو"))
-  await user.remove_roles(discord.utils.get(user.guild.roles, name="Unverified"))
-  channel = client.get_channel(1007545972785676338)
-  await channel.send("**توثيق ↓**")
-  txt=f"**توثق من طرف: {ctx.author}\nسبب التوثيق: {r}**"
-  embed=discord.Embed(title=f"**لوق {user}**", description=txt, color=discord.Color.random())
-  embed.set_thumbnail(url=user.avatar)
-  await channel.send(embed=embed)
-  await ctx.send(f"**تم توثيق {user.name} ✅**")
- else:
-  return
-
-@client.command(aliases=["unver"])
-@commands.guild_only()
-@commands.has_permissions(manage_messages=True)
-async def unverify(ctx, user: discord.Member=None,*, reason="مافي سبب"):
- if user == None:
-   await ctx.send(f"**{prefix}unver, unverify @{ctx.author.name}**")
-   return
- await user.add_roles(discord.utils.get(user.guild.roles, name="Unverified"))
- await user.remove_roles(discord.utils.get(user.guild.roles, name="عبدو"))
- await ctx.message.add_reaction("✅")
- channel = client.get_channel(1007545972785676338)
- await channel.send("**إزالة التوثيق ↓**")
- txt=f"**انشال من طرف: {ctx.author}\nالسبب: {reason}**"
- embed=discord.Embed(title=f"**لوق {user}**", description=txt, color=discord.Color.random())
- embed.set_thumbnail(url=user.avatar)
- await channel.send(embed=embed)
-
-@client.command()
-@commands.guild_only()
-async def بوت(ctx,*, txt):
- tr=requests.get(f"https://api.popcat.xyz/translate?to=en&text={txt}").json()
- r=requests.get(f"https://api.popcat.xyz/chatbot?msg={tr['translated']}&owner=سليم&botname=ترولر").json()
- trans=requests.get(f"https://api.popcat.xyz/translate?to=ar&text={r['response']}").json()
- await ctx.reply(f"**{trans['translated']}**", mention_author=False)
-
-client.run("MTAwNjc0NTQ1Mzc4Nzg4NTYxOQ.GG6_rX.tj_jSCEAaIKYfKJGozfUVDmvSbP-EjR6pfsThM")
+client.run("MTAwNjc0NTQ1Mzc4Nzg4NTYMTAwMzUzMjE5NzQ1NTczMjc2Nw.GnQ7Xi.NXkhBf6kPuK2llMBwdo9uyYpnev7H42cXx4w4o")
